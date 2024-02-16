@@ -1,12 +1,12 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_ft_isalpha.c                                  :+:      :+:    :+:   */
+/*   test_ft_isdigit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 07:39:53 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/02/16 16:46:18 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:45:00 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,15 +14,17 @@
 
 static void	test(const char c);
 
-void	test_ft_isalpha(void)
+void	test_ft_isdigit(void)
 {
-	print_title ("ft_isalpha tests");
+	print_title ("ft_isdigit tests");
 	test (0);
-	test ('a');
-	test ('z');
+	test (5);
+	test (9);
+	test ('0');
+	test ('5');
+	test ('9');
 	test ('A');
 	test ('Z');
-	test ('1');
 	test ('@');
 	test (' ');
 	test ('\t');
@@ -36,20 +38,20 @@ static void	test(const char c)
 
 	ret = 0;
 	ft_ret = 0;
-	ret = isalpha (c);
-	ft_ret = ft_isalpha (c);
+	ret = isdigit (c);
+	ft_ret = ft_isdigit (c);
 	if (ret == ft_ret)
 		printf ("%s: [%c]\n", OK, c);
 	else if (ft_ret && ret)
 	{
 		printf ("%s: [%c] | ", PASS, c);
-		printf ("isalpha return: [%d] | ", ret);
-		printf ("ft_isalpha return: [%d]\n", ft_ret);
+		printf ("isdigit return: [%d] | ", ret);
+		printf ("ft_isdigit return: [%d]\n", ft_ret);
 	}
 	else
 	{
 		printf ("%s: [%c] | ", KO, c);
-		printf ("isalpha return: [%d] | ", ret);
-		printf ("ft_isalpha return: [%d]\n", ft_ret);
+		printf ("isdigit return: [%d] | ", ret);
+		printf ("ft_isdigit return: [%d]\n", ft_ret);
 	}
 }

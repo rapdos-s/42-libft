@@ -6,7 +6,7 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 07:41:34 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/02/16 09:17:44 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:15:15 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,6 +37,7 @@
 
 // Tests
 void	test_ft_isalpha(void);
+void	test_ft_isdigit(void);
 
 // Utils
 void	print_title(const char *title);

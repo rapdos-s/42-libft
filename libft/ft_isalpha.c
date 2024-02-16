@@ -6,7 +6,7 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 07:21:43 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/02/16 09:19:42 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:46:51 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,9 +17,7 @@ int	ft_isalpha(int c)
 	int	ret;
 
 	ret = 0;
-	if (c >= 'a' && c <= 'z')
-		ret = 1024;
-	else if (c >= 'A' && c <= 'M')
-		ret = 1;
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		ret = 1 << 10;
 	return (ret);
 }

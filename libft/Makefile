@@ -6,13 +6,14 @@
 #    By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 06:58:34 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/02/16 09:45:28 by rapdos-s         ###   ########.fr        #
+#    Updated: 2024/02/16 16:16:09 by rapdos-s         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME			 = libft.a
 
-SOURCES				 =	ft_isalpha.c
+SOURCES				 = ft_isalpha.c \
+					   ft_isdigit.c
 BONUS_SOURCES		 = 
 
 OBJECTS				 =	${SOURCES:%.c=%.o}
