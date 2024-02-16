@@ -1,0 +1,24 @@
+################################################################################
+
+# LIBFT
+
+# library files
+libft/libft.a
+
+# Dependencies files
+libft/*d
+
+# Objects files
+libft/*.o
+
+################################################################################
+
+# TESTS
+
+# Dependencies Objects files
+build/
+
+# Executable files
+libft_tests.out
+
+################################################################################
