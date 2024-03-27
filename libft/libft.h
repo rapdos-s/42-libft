@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 19:37:49 by rapdos-s          #+#    #+#             */
+/*   Updated: 2024/03/27 19:38:58 by rapdos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -13,15 +25,15 @@
 // Buffer size for get_next_line
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
-# endif
+# endif // BUFFER_SIZE
 
 # ifndef FT_RETURN_VALUES
-#  define FT_ISASCII_RETURN 1 << 0
-#  define FT_ISALNUM_RETURN 1 << 3
-#  define FT_ISALPHA_RETURN 1 << 10
-#  define FT_ISDIGIT_RETURN 1 << 11
-#  define FT_ISPRINT_RETURN 1 << 14
-# endif
+#  define FT_ISASCII_RETURN 1
+#  define FT_ISALNUM_RETURN 8
+#  define FT_ISALPHA_RETURN 1024
+#  define FT_ISDIGIT_RETURN 2048
+#  define FT_ISPRINT_RETURN 16384
+# endif // FT_RETURN_VALUES
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

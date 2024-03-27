@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"tests.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"compare": "c",
+		"type_traits": "c"
 	}
 }

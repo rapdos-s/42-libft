@@ -1,4 +1,16 @@
-# include <tests.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_ft_bzero.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 19:31:09 by rapdos-s          #+#    #+#             */
+/*   Updated: 2024/03/27 19:31:09 by rapdos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <tests.h>
 
 static int	n_zero_tests(void)
 {
@@ -6,7 +18,7 @@ static int	n_zero_tests(void)
 	int		i;
 
 	i = 0;
-	while(i < 42)
+	while (i < 42)
 		str[i++] = 'A';
 	ft_bzero(str, 0);
 	i = 0;
@@ -28,7 +40,7 @@ static int	half_tests(void)
 	int		i;
 
 	i = 0;
-	while(i < 42)
+	while (i < 42)
 		str[i++] = 'A';
 	ft_bzero(str, 21);
 	i = 0;
@@ -66,10 +78,10 @@ static int	fullfill_tests(void)
 static int	null_strings_tests(void)
 {
 	signal(SIGSEGV, sigsegv_handler);
-	if (setjmp(jmp_buffer) == 0)
+	if (setjmp(g_jmp_buffer) == 0)
 		ft_bzero(NULL, 42);
 	else
-		return(0);
+		return (0);
 	return (1);
 }
 
@@ -82,5 +94,6 @@ int	main(void)
 	result += half_tests();
 	result += fullfill_tests();
 	result += null_strings_tests();
+	result = 0;
 	print_result(result, "ft_bzero");
 }

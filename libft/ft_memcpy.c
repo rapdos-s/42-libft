@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 19:29:32 by rapdos-s          #+#    #+#             */
+/*   Updated: 2024/03/27 19:45:16 by rapdos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
@@ -13,11 +25,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	if (u_dest > u_src)
 	{
 		i = n;
-		while (i > 0)
-		{
-			i--;
+		while (--i > 0)
 			u_dest[i] = u_src[i];
-		}
 	}
 	else
 	{

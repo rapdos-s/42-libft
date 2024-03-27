@@ -1,6 +1,21 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_ft_lstadd_back.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 19:31:00 by rapdos-s          #+#    #+#             */
+/*   Updated: 2024/03/27 19:31:00 by rapdos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main()
+#include <tests.h>
+
+int	main(void)
 {
-	printf("-- | -- | lstadd_back\n");
+	int	result;
+
+	result = 0;
+	print_result(result, "lstadd_back");
 }

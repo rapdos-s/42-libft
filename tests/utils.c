@@ -1,8 +1,20 @@
-# include <tests.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 19:30:11 by rapdos-s          #+#    #+#             */
+/*   Updated: 2024/03/27 19:30:11 by rapdos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-jmp_buf	jmp_buffer;
+#include <tests.h>
 
-void	print_result (int passed, const char *test_name)
+jmp_buf	g_jmp_buffer;
+
+void	print_result(int passed, const char *test_name)
 {
 	char	*color;
 
@@ -21,5 +33,5 @@ void	print_result (int passed, const char *test_name)
 void	sigsegv_handler(int signum)
 {
 	(void) signum;
-	longjmp(jmp_buffer, 1);
+	longjmp(g_jmp_buffer, 1);
 }

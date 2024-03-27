@@ -1,8 +1,7 @@
 NAME = libft.a
 
+FOO = bar
 SOURCES			 = ft_isalpha.c \
-
-FOO = bar \
 				   ft_isdigit.c \
 				   ft_isalnum.c \
 				   ft_isascii.c \

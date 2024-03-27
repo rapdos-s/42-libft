@@ -1,6 +1,21 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_ft_strchr.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 19:30:35 by rapdos-s          #+#    #+#             */
+/*   Updated: 2024/03/27 19:30:35 by rapdos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main()
+#include <tests.h>
+
+int	main(void)
 {
-	printf("-- | -- | ft_strchr\n");
+	int	result;
+
+	result = 0;
+	print_result(result, "ft_strchr");
 }

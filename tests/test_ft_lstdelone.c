@@ -1,6 +1,21 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_ft_lstdelone.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 19:30:57 by rapdos-s          #+#    #+#             */
+/*   Updated: 2024/03/27 19:30:57 by rapdos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main()
+#include <tests.h>
+
+int	main(void)
 {
-	printf("-- | -- | ft_lstdelone\n");
+	int	result;
+
+	result = 0;
+	print_result(result, "ft_lstdelone");
 }

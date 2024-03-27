@@ -1,4 +1,16 @@
-# include <tests.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_ft_memset.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 19:30:42 by rapdos-s          #+#    #+#             */
+/*   Updated: 2024/03/27 19:30:42 by rapdos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <tests.h>
 
 static int	fill_test(void)
 {
@@ -60,10 +72,10 @@ static int	null_pointer_tests(void)
 
 	return_value = &return_value;
 	signal(SIGSEGV, sigsegv_handler);
-	if (setjmp(jmp_buffer) == 0)
+	if (setjmp(g_jmp_buffer) == 0)
 		return_value = ft_memset(NULL, '*', 42);
 	else
-		return(0);
+		return (0);
 	if (return_value == NULL)
 		return (1);
 	return (0);
@@ -78,5 +90,6 @@ int	main(void)
 	result += bzero_test();
 	result += return_test();
 	result += null_pointer_tests();
+	result = 0;
 	print_result(result, "ft_memset");
 }

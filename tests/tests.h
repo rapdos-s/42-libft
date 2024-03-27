@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 19:30:15 by rapdos-s          #+#    #+#             */
+/*   Updated: 2024/03/27 19:30:15 by rapdos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef TESTS_H
 # define TESTS_H
 
@@ -19,14 +31,14 @@
 // signal() SIGSEGV
 # include <signal.h>
 
-extern jmp_buf jmp_buffer;
+extern jmp_buf	g_jmp_buffer;
 
 # ifndef FT_RETURN_VALUES
-#  define FT_ISASCII_RETURN 1 << 0
-#  define FT_ISALNUM_RETURN 1 << 3
-#  define FT_ISALPHA_RETURN 1 << 10
-#  define FT_ISDIGIT_RETURN 1 << 11
-#  define FT_ISPRINT_RETURN 1 << 14
+#  define FT_ISASCII_RETURN 1
+#  define FT_ISALNUM_RETURN 8
+#  define FT_ISALPHA_RETURN 1024
+#  define FT_ISDIGIT_RETURN 2048
+#  define FT_ISPRINT_RETURN 16384
 # endif // FT_RETURN_VALUES
 
 # ifndef FT_COLORS

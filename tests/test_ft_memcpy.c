@@ -1,4 +1,16 @@
-# include <tests.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_ft_memcpy.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 19:30:48 by rapdos-s          #+#    #+#             */
+/*   Updated: 2024/03/27 19:30:48 by rapdos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <tests.h>
 
 static int	copy_tests(void)
 {
@@ -44,10 +56,10 @@ static int	constant_tests(void)
 	signal(SIGSEGV, sigsegv_handler);
 	src = "Hello, World!";
 	return_value = NULL;
-	if (setjmp(jmp_buffer) == 0)
+	if (setjmp(g_jmp_buffer) == 0)
 		return_value = ft_memcpy(dest, src, 14);
 	else
-		return(0);
+		return (0);
 	if (return_value != dest)
 		return (0);
 	i = 0;
@@ -68,17 +80,17 @@ static int	null_pointer_tests(void)
 
 	signal(SIGSEGV, sigsegv_handler);
 	return_value = &return_value;
-	if (setjmp(jmp_buffer) == 0)
+	if (setjmp(g_jmp_buffer) == 0)
 		return_value = ft_memcpy(NULL, src, 42);
 	else
-		return(0);
+		return (0);
 	if (return_value != NULL)
 		return (0);
 	return_value = &return_value;
-	if (setjmp(jmp_buffer) == 0)
+	if (setjmp(g_jmp_buffer) == 0)
 		return_value = ft_memcpy(dest, NULL, 42);
 	else
-		return(0);
+		return (0);
 	if (return_value != NULL)
 		return (0);
 	return (1);
