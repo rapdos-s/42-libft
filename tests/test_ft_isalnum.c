@@ -1,5 +1,6 @@
 # include <tests.h>
 
+
 static int	uppercase_test(void)
 {
 	char	uppercase_letters[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -8,11 +9,8 @@ static int	uppercase_test(void)
 	i = 0;
 	while (uppercase_letters[i])
 	{
-		if (ft_isalpha(uppercase_letters[i]) != 1024)
-		{
-			printf(FAIL_ALERT "ft_isalpha: Fail on uppercase test\n");
+		if (ft_isalnum(uppercase_letters[i]) != FT_ISALPHA_RETURN)
 			return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -26,29 +24,23 @@ static int	lowercase_test(void)
 	i = 0;
 	while (lowercase_letters[i])
 	{
-		if (ft_isalpha(lowercase_letters[i]) != 1024)
-		{
-			printf(FAIL_ALERT "ft_isalpha: Fail on lowercase test\n");
+		if (ft_isalnum(lowercase_letters[i]) != FT_ISALPHA_RETURN)
 			return (0);
-		}
 		i++;
 	}
 	return (1);
 }
 
-static int	non_alpha_test(void)
+static int	digits_test(void)
 {
-	char	special_chars[] = "0123456789!@#$%^&*()_+-=[]{}|;':,.<>?/";
+	char	digits[] = "0123456789";
 	int		i;
 
 	i = 0;
-	while (special_chars[i])
+	while (digits[i])
 	{
-		if (ft_isalpha(special_chars[i]) != 0)
-		{
-			printf(FAIL_ALERT "ft_isalpha: Fail on non alpha test\n");
+		if (ft_isalnum(digits[i]) != FT_ISALPHA_RETURN)
 			return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -62,14 +54,11 @@ static int	special_char_test(void)
 	i = 0;
 	while (special_chars[i])
 	{
-		if (ft_isalpha(special_chars[i]) != 0)
-		{
-			printf(FAIL_ALERT "ft_isalpha: Fail on special char test\n");
+		if (ft_isalnum(special_chars[i]) != 0)
 			return (0);
-		}
 		i++;
 	}
-	if (ft_isalpha(0) != 0)
+	if (ft_isalnum(0) != 0)
 		return (0);
 	return (1);
 }
@@ -81,7 +70,7 @@ int	main(void)
 	result = 0;
 	result += uppercase_test();
 	result += lowercase_test();
-	result += non_alpha_test();
+	result += digits_test();
 	result += special_char_test();
-	print_result(result, "ft_isalpha");
+	print_result(result, "ft_isalnum");
 }

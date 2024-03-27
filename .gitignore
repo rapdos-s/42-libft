@@ -19,6 +19,6 @@ libft/*.o
 build/
 
 # Executable files
-libft_tests.out
+libft_tester.out
 
 ################################################################################

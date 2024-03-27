@@ -1,141 +1,122 @@
-#******************************************************************************#
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/16 07:41:41 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/02/16 09:33:09 by rapdos-s         ###   ########.fr        #
-#                                                                              #
-#******************************************************************************#
+BUILD_DIR = build
+LIBFT_DIR = libft
+SOURCES_DIR = tests
 
-SOURCES_DIR			 = tests
-BONUS_DIR			 = tests_bonus
-LIBFT_DIR			 = libft
-BUILD_DIR			 = build
+NAME = libft_tester.out
+LIBFT = $(LIBFT_DIR)/libft.a
 
-NAME				 = libft_tests.out
-NAME_BONUS			 = libft_bonus_tests.out
-LIBFT				 = ${LIBFT_DIR}/libft.a
+LIBFT_OBJS = $(wildcard $(LIBFT_DIR)/*.o)
+LIBFT_SOURCES = $(patsubst $(LIBFT_DIR)/%.o, $(SOURCES_DIR)/test_%.c, $(LIBFT_OBJS))
+COMPATIBLE_SOURCES = $(wildcard $(SOURCES_DIR)/*.c)
 
-SOURCES				 = ${wildcard ${SOURCES_DIR}/*.c}
-OBJECTS				 = ${patsubst ${SOURCES_DIR}/%.c, ${BUILD_DIR}/%.o, ${SOURCES}}
-DEPENDENCIES		 = ${OBJECTS:.o=.d}
+MAIN_SOURCE = $(SOURCES_DIR)/main.c
+UTILS_SOURCE = $(SOURCES_DIR)/utils.c
+SOURCES = $(MAIN_SOURCE) $(filter $(LIBFT_SOURCES), $(COMPATIBLE_SOURCES))
+MAIN_OBJECT = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(MAIN_SOURCE))
+UTILS_OBJECT = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(UTILS_SOURCE))
+OBJECTS = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(SOURCES))
+DEPENDENCIES = $(OBJECTS:.o=.d)
+TESTS_OUT = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.out, $(SOURCES))
 
-BONUS				 = ${wildcard ${BONUS_DIR}/*.c}
-OBJECTS_BONUS		 = ${patsubst ${BONUS_DIR}/%.c, ${BUILD_DIR}/%.o, ${BONUS}}
-DEPENDENCIES_BONUS	 = ${OBJECTS_BONUS:.o=.d}
+ARGS = $(filter $(LIBFT_SOURCES), $(COMPATIBLE_SOURCES))
+ARGS := $(ARGS:$(SOURCES_DIR)/%.c=$(BUILD_DIR)/%.out)
 
-CC					 = cc
-CFLAGS				 = -Wall -Wextra -Werror -Wpedantic
-DEPFLAGS			 = -MMD -MF
-INCLUDES			 = -I./${SOURCES_DIR} -I./${BONUS_DIR} -I./${LIBFT_DIR}
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -Wpedantic
+DEPFLAGS = -MMD -MF
 
-VALGRIND			 = valgrind
-VALFLAGS			 = --show-error-list=yes \
-					   --leak-check=full \
-					   --show-leak-kinds=all \
-					   --track-origins=yes \
-					   --track-fds=yes
+INCLUDES = -I./$(SOURCES_DIR) -I./$(LIBFT_DIR)
 
-DEL					 = rm -rf
-MKDIR				 = mkdir -p
+MAKE = make
+MAKE_FLAGS = --no-print-directory -C
 
-MAKE				 = make
-MKFLAGS				 = --no-print-directory -C
+MKDIR = mkdir
+MKDIR_FLAGS = -p
 
-.DEFAULT_GOAL		 = all
+RM = rm -fr
+
+ECHO = echo -e
+
+COLOR_RESET = "\033[0m"
+COLOR_PURPLE = "\033[0;35m"
+
+MESSAGE =  $(COLOR_PURPLE)"[ MAKE ]"$(COLOR_RESET)
+
+REMOVE_OUTPUT = > /dev/null
+
+.DEFAULT_GOAL = test
 
 ################################################################################
 
-${NAME}: ${OBJECTS} ${LIBFT}
-	${CC} ${CFLAGS} ${INCLUDES} ${OBJECTS} ${LIBFT} -o ${NAME}
-
-${NAME_BONUS}: ${OBJECTS_BONUS} ${LIBFT}
-	${CC} ${CFLAGS} ${INCLUDES} ${OBJECTS_BONUS} ${LIBFT} -o ${NAME_BONUS}
-
-all: mandatory bonus
-
-mandatory: ${NAME}
-
-bonus: ${NAME_BONUS}
+all: $(NAME)
 
 clean:
-	${DEL} ${BUILD_DIR}
-	${MAKE} ${MKFLAGS} ${LIBFT_DIR} clean
+	@$(ECHO) $(MESSAGE) "Cleaning libft intermediate files"
+	@$(MAKE) $(MAKE_FLAGS) $(LIBFT_DIR) clean $(REMOVE_OUTPUT)
+	@$(ECHO) $(MESSAGE) "Cleaning tests intermediate files"
+	@$(RM) $(BUILD_DIR)
 
-fclean: clean
-	${DEL} ${NAME} ${NAME_BONUS}
-	${MAKE} ${MKFLAGS} ${LIBFT_DIR} fclean
+fclean:
+	@$(ECHO) $(MESSAGE) "Cleaning libft intermediate and output files"
+	@$(MAKE) $(MAKE_FLAGS) $(LIBFT_DIR) fclean $(REMOVE_OUTPUT)
+	@$(ECHO) $(MESSAGE) "Cleaning tests intermediate and output files"
+	@$(RM) $(BUILD_DIR) $(NAME)
 
 re: fclean all
 
-.PHONY: all mandatory bonus clean fclean re
+################################################################################
+
+$(LIBFT): force
+	@if [ $(MAKELEVEL) -eq 0 ]; then \
+		$(ECHO) $(MESSAGE) "Building libft"; \
+		$(MAKE) $(MAKE_FLAGS) $(LIBFT_DIR) all $(REMOVE_OUTPUT); \
+	fi
+
+$(NAME): $(LIBFT) $(OBJECTS) $(MAIN_OBJECT)
+	@if [ $(MAKELEVEL) -eq 0 ]; then \
+		$(ECHO) $(MESSAGE) "Building $(NAME)"; \
+		$(CC) $(CFLAGS) $(MAIN_OBJECT) $(INCLUDES) -o $(NAME); \
+	fi
+
+$(BUILD_DIR):
+	@$(MKDIR) $(MKDIR_FLAGS) $(BUILD_DIR)
 
 ################################################################################
 
--include ${DEPENDENCIES}
+$(BUILD_DIR)/%.o: $(SOURCES_DIR)/%.c $(UTILS_OBJECT) $(LIBFT) | $(BUILD_DIR)
+#	@$(ECHO) $(MESSAGE) "Building $@"
+	@$(CC) $(CFLAGS) $(DEPFLAGS) $(BUILD_DIR)/$*.d $(INCLUDES) -c $< -o $@
+#	@$(ECHO) $(MESSAGE) "Building $(@:.o=.out)"
+	@$(CC) $(CFLAGS) $(INCLUDES) $< $(LIBFT) $(UTILS_OBJECT) -o $(@:.o=.out)
 
--include ${DEPENDENCIES_BONUS}
-
-${BUILD_DIR}/%.o: ${SOURCES_DIR}/%.c | ${BUILD_DIR}
-	${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@ ${DEPFLAGS} ${@:.o=.d}
-
-${BUILD_DIR}/%.o: ${BNS_DIR}/%.c | ${BUILD_DIR}
-	${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@ ${DEPFLAGS} ${@:.o=.d}
-
-${LIBFT}: force
-	${MAKE} ${MKFLAGS} ${LIBFT_DIR}
-
-${BUILD_DIR}:
-	${MKDIR} ${BUILD_DIR}
+$(UTILS_OBJECT): $(UTILS_SOURCE) | $(BUILD_DIR)
+#	@$(ECHO) $(MESSAGE) "Building $@"
+	@$(CC) $(CFLAGS) $(DEPFLAGS) $(BUILD_DIR)/utils.d $(INCLUDES) -c $< -o $@
 
 ################################################################################
 
-test: all
-	./${NAME}
-	./${NAME_BONUS}
+test: $(NAME)
+#	@$(ECHO) $(MESSAGE) "Calling test"
+	@$(MAKE) $(MAKE_FLAGS) . run
+	@$(ECHO) $(MESSAGE) "Done"
 
-test_mandatory: ${NAME}
-	./${NAME}
-
-test_bonus: ${NAME_BONUS}
-	./${NAME_BONUS}
-
-.PHONY: test test_mandatory test_bonus
+run: $(NAME)
+	@$(ECHO) $(MESSAGE) "Running tests"
+	@./$(NAME) $(ARGS)
 
 ################################################################################
 
-valgrind: all
-	${VALGRIND} ${VALFLAGS} ./${NAME}
-	${VALGRIND} ${VALFLAGS} ./${NAME_BONUS}
-
-valgrind_mandatory: ${NAME}
-	${VALGRIND} ${VALFLAGS} ./${NAME}
-
-valgrind_bonus: ${NAME_BONUS}
-	${VALGRIND} ${VALFLAGS} ./${NAME_BONUS}
-
-.PHONY: valgrind valgrind_mandatory valgrind_bonus
+-include $(DEPENDENCIES)
 
 ################################################################################
 
 force:
 
-.PHONY: force
-
 ################################################################################
 
 duck:
-	@echo "Furious quacking noises!"
+	@$(ECHO) $(MESSAGE) "Furious quacking sound effect!"
 
-.PHONY: duck
+################################################################################
 
-print:
-	@echo "SOURCES: ${SOURCES}"
-	@echo "OBJECTS: ${OBJECTS}"
-	@echo "DEPENDENCIES: ${DEPENDENCIES}"
-	@echo "BONUS: ${BONUS}"
-	@echo "OBJECTS_BONUS: ${OBJECTS_BONUS}"
-	@echo "DEPENDENCIES_BONUS: ${DEPENDENCIES_BONUS}"
+.PHONY: all clean fclean re test run force duck

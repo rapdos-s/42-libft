@@ -1,47 +1,45 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   tests.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 07:41:34 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/02/16 16:15:15 by rapdos-s         ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
-
 #ifndef TESTS_H
 # define TESTS_H
 
-// isalpha()
-# include <ctype.h>
+// setjmp() longjmp() jmp_buf
+# include <setjmp.h>
 
 // printf()
 # include <stdio.h>
 
-// strlen()
-# include <string.h>
+// wait()
+# include <sys/wait.h>
 
-// libft
+// execl() fork()
+# include <unistd.h>
+
+// ft_isalnum()
 # include <libft.h>
 
-#define DEFAULT_COLOR	"\x1b[0m"
-#define RED_COLOR		"\x1b[31m"
-#define GREEN_COLOR		"\x1b[32m"
-#define YELLOW_COLOR	"\x1b[33m"
+// signal() SIGSEGV
+# include <signal.h>
 
-#define OK		GREEN_COLOR "OK" DEFAULT_COLOR
-#define PASS	YELLOW_COLOR "PASS" DEFAULT_COLOR
-#define KO		RED_COLOR "KO" DEFAULT_COLOR
+extern jmp_buf jmp_buffer;
 
-// Tests
-void	test_ft_isalpha(void);
-void	test_ft_isdigit(void);
+# ifndef FT_RETURN_VALUES
+#  define FT_ISASCII_RETURN 1 << 0
+#  define FT_ISALNUM_RETURN 1 << 3
+#  define FT_ISALPHA_RETURN 1 << 10
+#  define FT_ISDIGIT_RETURN 1 << 11
+#  define FT_ISPRINT_RETURN 1 << 14
+# endif // FT_RETURN_VALUES
 
-// Utils
-void	print_title(const char *title);
-void	print_footer(void);
+# ifndef FT_COLORS
+#  define FT_GREEN "\033[0;32m"
+#  define FT_YELLOW "\033[0;33m"
+#  define FT_RESET "\033[0m"
+# endif // FT_COLORS
+
+# ifndef FT_PATTERNS
+#  define FAIL_ALERT "[ ! ] "
+# endif // FT_PATTERNS
+
+void	print_result(int passed, const char *test_name);
+void	sigsegv_handler(int signum);
 
 #endif // TESTS_H
-

@@ -1,71 +1,103 @@
-#******************************************************************************#
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/16 06:58:34 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/02/16 16:16:09 by rapdos-s         ###   ########.fr        #
-#                                                                              #
-#******************************************************************************#
+NAME = libft.a
 
-NAME			 = libft.a
+SOURCES			 = ft_isalpha.c \
 
-SOURCES				 = ft_isalpha.c \
-					   ft_isdigit.c
-BONUS_SOURCES		 = 
+FOO = bar \
+				   ft_isdigit.c \
+				   ft_isalnum.c \
+				   ft_isascii.c \
+				   ft_isprint.c \
+				   ft_strlen.c \
+				   ft_memset.c \
+				   ft_bzero.c \
+				   ft_memcpy.c \
+				   ft_memmove.c \
+				   ft_strlcpy.c \
+				   ft_strlcat.c \
+				   ft_toupper.c \
+				   ft_tolower.c \
+				   ft_strchr.c \
+				   ft_strrchr.c \
+				   ft_strncmp.c \
+				   ft_memchr.c \
+				   ft_memcmp.c \
+				   ft_strnstr.c \
+				   ft_atoi.c \
+				   ft_calloc.c \
+				   ft_strdup.c \
+				   ft_substr.c \
+				   ft_strjoin.c \
+				   ft_strtrim.c \
+				   ft_split.c \
+				   ft_itoa.c \
+				   ft_strmapi.c \
+				   ft_striteri.c \
+				   ft_putchar_fd.c \
+				   ft_putstr_fd.c \
+				   ft_putendl_fd.c \
+				   ft_putnbr_fd.c
+BONUS_SOURCES	 = ft_lstnew.c \
+				   ft_lstadd_front.c \
+				   ft_lstsize.c \
+				   ft_lstlast.c \
+				   ft_lstadd_back.c \
+				   ft_lstdelone.c \
+				   ft_lstclear.c \
+				   ft_lstiter.c \
+				   ft_lstmap.c
 
-OBJECTS				 =	${SOURCES:%.c=%.o}
-BONUS_OBJECTS		 =	${BONUS_SOURCES:%.c=%.o}
+BONUS_SOURCES =
 
-DEPENDENCIES		 = ${OBJECTS:.o=.d}
-DEPENDENCIES_BONUS	 = ${BONUS_OBJECTS:.o=.d}
+OBJECTS			 =	$(SOURCES:%.c=%.o)
+BONUS_OBJECTS	 =	$(BONUS_SOURCES:%.c=%.o)
 
-CC					 = cc
-CFLAGS				 = -Wall -Wextra -Werror -Wpedantic
-DEPFLAGS			 = -MMD -MF
+DEPENDENCIES		 = $(OBJECTS:.o=.d)
+DEPENDENCIES_BONUS	 = $(BONUS_OBJECTS:.o=.d)
 
-AR					 = ar
-ARFLAGS				 = crs
+CC			 = cc
+CFLAGS		 = -Wall -Wextra -Werror -Wpedantic
+DEPFLAGS	 = -MMD -MF
 
-DEL					 = rm -rf
+AR		 = ar
+ARFLAGS	 = crs
 
-.DEFAULT_GOAL		 = all
+DEL = rm -rf
+
+.DEFAULT_GOAL = all
 
 ################################################################################
 
-all: ${NAME} bonus
-
-$(NAME): ${OBJECTS}
-
-mandatory: ${NAME}
-
-bonus: ${BONUS_OBJECTS}
+all: mandatory bonus
 
 clean:
-	${RM} ${OBJECTS} ${B_OBJECTS} ${DEPENDENCIES} ${DEPENDENCIES_BONUS}
+	$(RM) $(OBJECTS) $(BONUS_OBJECTS) $(DEPENDENCIES) $(DEPENDENCIES_BONUS)
 
 fclean: clean
-	${RM} ${NAME}
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all mandatory bonus clean fclean re
+################################################################################
+
+mandatory: $(OBJECTS)
+
+$(NAME): mandatory
+
+bonus: $(BONUS_OBJECTS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(DEPFLAGS) $(@:.o=.d)
+	$(AR) $(ARFLAGS) $(NAME) $@
 
 ################################################################################
 
--include ${DEPENDENCIES}
+-include $(DEPENDENCIES)
 
--include ${DEPENDENCIES_BONUS}
-
-%.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@ ${DEPFLAGS} ${@:.o=.d}
-	${AR} ${ARFLAGS} ${NAME} $@
+-include $(DEPENDENCIES_BONUS)
 
 ################################################################################
 
 duck:
 	@echo "Furious quacking noises!"
 
-.PHONY: duck
+.PHONY: all clean fclean re mandatory bonus duck

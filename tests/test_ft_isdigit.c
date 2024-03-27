@@ -1,57 +1,74 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test_ft_isdigit.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 07:39:53 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/02/16 16:45:00 by rapdos-s         ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
+# include <tests.h>
 
-#include <tests.h>
-
-static void	test(const char c);
-
-void	test_ft_isdigit(void)
+static int	digits_test(void)
 {
-	print_title ("ft_isdigit tests");
-	test (0);
-	test (5);
-	test (9);
-	test ('0');
-	test ('5');
-	test ('9');
-	test ('A');
-	test ('Z');
-	test ('@');
-	test (' ');
-	test ('\t');
-	print_footer ();
+	char	digits[] = "0123456789";
+	int		i;
+
+	i = 0;
+	while (digits[i])
+	{
+		if (ft_isdigit(digits[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-static void	test(const char c)
+static int	letters_test(void)
 {
-	int		ret;
-	int		ft_ret;
+	char	letters[] = "ABCXYZabcxyz";
+	int		i;
 
-	ret = 0;
-	ft_ret = 0;
-	ret = isdigit (c);
-	ft_ret = ft_isdigit (c);
-	if (ret == ft_ret)
-		printf ("%s: [%c]\n", OK, c);
-	else if (ft_ret && ret)
+	i = 0;
+	while (letters[i])
 	{
-		printf ("%s: [%c] | ", PASS, c);
-		printf ("isdigit return: [%d] | ", ret);
-		printf ("ft_isdigit return: [%d]\n", ft_ret);
+		if (ft_isdigit(letters[i]) != 0)
+			return (0);
+		i++;
 	}
-	else
+	return (1);
+}
+
+static int	low_ascii_test(void)
+{
+	int		i;
+
+	i = 0;
+	while (i < 32)
 	{
-		printf ("%s: [%c] | ", KO, c);
-		printf ("isdigit return: [%d] | ", ret);
-		printf ("ft_isdigit return: [%d]\n", ft_ret);
+		if (ft_isdigit(i) != 0)
+			return (0);
+		i++;
 	}
+	return (1);
+}
+
+static int	special_char_test(void)
+{
+	char	special_chars[] = " \t\n\r\v\f";
+	int		i;
+
+	i = 0;
+	while (special_chars[i])
+	{
+		if (ft_isdigit(special_chars[i]) != 0)
+			return (0);
+		i++;
+	}
+	if (ft_isdigit(0) != 0)
+		return (0);
+	return (1);
+}
+
+int	main(void)
+{
+	int	result;
+
+	result = 0;
+	result += digits_test();
+	result += letters_test();
+	result += low_ascii_test();
+	result += special_char_test();
+	print_result(result, "ft_isdigit");
 }

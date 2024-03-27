@@ -1,20 +1,16 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 08:37:06 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/02/16 16:11:33 by rapdos-s         ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
+# include <tests.h>
 
-#include <tests.h>
-
-int	main(void)
+int main (int argc, char *argv[])
 {
-	test_ft_isalpha();
-	test_ft_isdigit();
-	return (0);
+	int i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (fork() == 0)
+			execl(argv[i], argv[i], NULL);
+		else
+			wait(NULL);
+		i++;
+	}
 }
