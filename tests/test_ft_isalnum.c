@@ -22,7 +22,10 @@ static int	uppercase_test(void)
 	while (uppercase_letters[i])
 	{
 		if (ft_isalnum(uppercase_letters[i]) != FT_ISALPHA_RETURN)
+		{
+			printf(FAIL_ALERT "ft_isalnum: Fail on uppercase chars test\n");
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -38,7 +41,10 @@ static int	lowercase_test(void)
 	while (lowercase_letters[i])
 	{
 		if (ft_isalnum(lowercase_letters[i]) != FT_ISALPHA_RETURN)
+		{
+			printf(FAIL_ALERT "ft_isalnum: Fail on lowercase chars test\n");
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -54,7 +60,10 @@ static int	digits_test(void)
 	while (digits[i])
 	{
 		if (ft_isalnum(digits[i]) != FT_ISALPHA_RETURN)
+		{
+			printf(FAIL_ALERT "ft_isalnum: Fail on digit chars test\n");
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -70,7 +79,10 @@ static int	special_char_test(void)
 	while (special_chars[i])
 	{
 		if (ft_isalnum(special_chars[i]) != 0)
+		{
+			printf(FAIL_ALERT "ft_isalnum: Fail on special chars test\n");
 			return (0);
+		}
 		i++;
 	}
 	if (ft_isalnum(0) != 0)
@@ -87,6 +99,5 @@ int	main(void)
 	result += lowercase_test();
 	result += digits_test();
 	result += special_char_test();
-	result = 0;
 	print_result(result, "ft_isalnum");
 }
