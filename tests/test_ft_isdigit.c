@@ -67,7 +67,7 @@ static int	low_ascii_chars_test(void)
 	return (1);
 }
 
-static int	special_char_test(void)
+static int	special_chars_test(void)
 {
 	char	*special_chars;
 	int		i;
@@ -99,7 +99,6 @@ int	main(void)
 	result += digits_test();
 	result += letters_test();
 	result += low_ascii_chars_test();
-	result += special_char_test();
-	result = 0;
+	result += special_chars_test();
 	print_result(result, "ft_isdigit");
 }
