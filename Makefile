@@ -18,7 +18,11 @@ NAME = libft_tester.out
 LIBFT = $(LIBFT_DIR)/libft.a
 
 LIBFT_OBJS = $(wildcard $(LIBFT_DIR)/*.o)
-LIBFT_SOURCES = $(patsubst $(LIBFT_DIR)/%.o, $(SOURCES_DIR)/test_%.c, $(LIBFT_OBJS))
+LIBFT_SOURCES = $(patsubst \
+					$(LIBFT_DIR)/%.o, \
+					$(SOURCES_DIR)/test_%.c, \
+					$(LIBFT_OBJS)\
+				)
 COMPATIBLE_SOURCES	 = test_ft_isalpha.c \
 					   test_ft_isdigit.c \
 					   test_ft_isalnum.c \
@@ -108,7 +112,7 @@ fclean:
 	@$(ECHO) $(MESSAGE) "Cleaning tests intermediate and output files"
 	@$(RM) $(BUILD_DIR) $(NAME)
 
-re: fclean all
+re: fclean test
 
 ################################################################################
 
@@ -130,19 +134,15 @@ $(BUILD_DIR):
 ################################################################################
 
 $(BUILD_DIR)/%.o: $(SOURCES_DIR)/%.c $(UTILS_OBJECT) $(LIBFT) | $(BUILD_DIR)
-#	@$(ECHO) $(MESSAGE) "Building $@"
 	@$(CC) $(CFLAGS) $(DEPFLAGS) $(BUILD_DIR)/$*.d $(INCLUDES) -c $< -o $@
-#	@$(ECHO) $(MESSAGE) "Building $(@:.o=.out)"
 	@$(CC) $(CFLAGS) $(INCLUDES) $< $(LIBFT) $(UTILS_OBJECT) -o $(@:.o=.out)
 
 $(UTILS_OBJECT): $(UTILS_SOURCE) | $(BUILD_DIR)
-#	@$(ECHO) $(MESSAGE) "Building $@"
 	@$(CC) $(CFLAGS) $(DEPFLAGS) $(BUILD_DIR)/utils.d $(INCLUDES) -c $< -o $@
 
 ################################################################################
 
 test: $(NAME)
-#	@$(ECHO) $(MESSAGE) "Calling test"
 	@$(MAKE) $(MAKE_FLAGS) . run
 	@$(ECHO) $(MESSAGE) "Done"
 

@@ -12,7 +12,6 @@
 
 NAME = libft.a
 
-FOO = bar
 SOURCES			 = ft_isalpha.c \
 				   ft_isdigit.c \
 				   ft_isalnum.c \
@@ -56,8 +55,6 @@ BONUS_SOURCES	 = ft_lstnew.c \
 				   ft_lstclear.c \
 				   ft_lstiter.c \
 				   ft_lstmap.c
-
-BONUS_SOURCES =
 
 OBJECTS			 =	$(SOURCES:%.c=%.o)
 BONUS_OBJECTS	 =	$(BONUS_SOURCES:%.c=%.o)

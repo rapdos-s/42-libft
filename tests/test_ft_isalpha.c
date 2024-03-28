@@ -50,7 +50,7 @@ static int	lowercase_test(void)
 	return (1);
 }
 
-static int	non_alpha_test(void)
+static int	non_alpha_chars_test(void)
 {
 	char	*special_chars;
 	int		i;
@@ -61,7 +61,7 @@ static int	non_alpha_test(void)
 	{
 		if (ft_isalpha(special_chars[i]) != 0)
 		{
-			printf(FAIL_ALERT "ft_isalpha: Fail on non alpha test\n");
+			printf(FAIL_ALERT "ft_isalpha: Fail on non alpha chars test\n");
 			return (0);
 		}
 		i++;
@@ -69,7 +69,7 @@ static int	non_alpha_test(void)
 	return (1);
 }
 
-static int	special_char_test(void)
+static int	special_chars_test(void)
 {
 	char	*special_chars;
 	int		i;
@@ -80,7 +80,7 @@ static int	special_char_test(void)
 	{
 		if (ft_isalpha(special_chars[i]) != 0)
 		{
-			printf(FAIL_ALERT "ft_isalpha: Fail on special char test\n");
+			printf(FAIL_ALERT "ft_isalpha: Fail on special chars test\n");
 			return (0);
 		}
 		i++;
@@ -97,8 +97,7 @@ int	main(void)
 	result = 0;
 	result += uppercase_test();
 	result += lowercase_test();
-	result += non_alpha_test();
-	result += special_char_test();
-	result = 0;
+	result += non_alpha_chars_test();
+	result += special_chars_test();
 	print_result(result, "ft_isalpha");
 }
