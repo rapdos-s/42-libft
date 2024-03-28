@@ -18,7 +18,10 @@ static int	empty_string_test(void)
 
 	empty_string = "";
 	if (ft_strlen(empty_string) != 0)
+	{
+		printf(FAIL_ALERT "ft_strlen: Fail on empty strings test\n");
 		return (0);
+	}
 	return (1);
 }
 
@@ -34,9 +37,15 @@ static int	simple_strings_tests(void)
 	len1 = 13;
 	len2 = 10;
 	if (ft_strlen(str1) != len1)
+	{
+		printf(FAIL_ALERT "ft_strlen: Fail on simple strings test\n");
 		return (0);
+	}
 	if (ft_strlen(str2) != len2)
+	{
+		printf(FAIL_ALERT "ft_strlen: Fail on simple strings test\n");
 		return (0);
+	}
 	return (1);
 }
 
@@ -45,10 +54,13 @@ static int	special_chars_test(void)
 	char	*str;
 	size_t	len;
 
-	str = "\t\n\v\f\r";
+	str = "\t\n\v\f\r\0\0\0\0\0\t\n\v\f\r";
 	len = 5;
 	if (ft_strlen(str) != len)
+	{
+		printf(FAIL_ALERT "ft_strlen: Fail on special chars test\n");
 		return (0);
+	}
 	return (1);
 }
 
@@ -60,9 +72,13 @@ static int	null_strings_tests(void)
 	if (setjmp(g_jmp_buffer) == 0)
 		result = ft_strlen(NULL);
 	else
+	{
+		printf(FAIL_ALERT "ft_strlen: Fail on null strings test\n");
 		return (0);
+	}
 	if (result == 0)
 		return (1);
+	printf(FAIL_ALERT "ft_strlen: Fail on null strings test\n");
 	return (0);
 }
 
@@ -75,6 +91,5 @@ int	main(void)
 	result += simple_strings_tests();
 	result += special_chars_test();
 	result += null_strings_tests();
-	result = 0;
 	print_result(result, "ft_strlen");
 }

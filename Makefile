@@ -10,19 +10,20 @@
 #                                                                              #
 # **************************************************************************** #
 
-BUILD_DIR = build
-LIBFT_DIR = libft
-SOURCES_DIR = tests
+BUILD_DIR	 = build
+LIBFT_DIR	 = libft
+SOURCES_DIR	 = tests
 
-NAME = libft_tester.out
-LIBFT = $(LIBFT_DIR)/libft.a
+NAME	 = libft_tester.out
+LIBFT	 = $(LIBFT_DIR)/libft.a
 
-LIBFT_OBJS = $(wildcard $(LIBFT_DIR)/*.o)
-LIBFT_SOURCES = $(patsubst \
+LIBFT_OBJS		 = $(wildcard $(LIBFT_DIR)/*.o)
+LIBFT_SOURCES	 = $(patsubst \
 					$(LIBFT_DIR)/%.o, \
 					$(SOURCES_DIR)/test_%.c, \
 					$(LIBFT_OBJS)\
-				)
+				   )
+
 COMPATIBLE_SOURCES	 = test_ft_isalpha.c \
 					   test_ft_isdigit.c \
 					   test_ft_isalnum.c \
@@ -57,40 +58,37 @@ COMPATIBLE_SOURCES	 = test_ft_isalpha.c \
 					   test_ft_putstr_fd.c \
 					   test_ft_putendl_fd.c \
 					   test_ft_putnbr_fd.c
-COMPATIBLE_SOURCES := $(addprefix $(SOURCES_DIR)/, $(COMPATIBLE_SOURCES))
+COMPATIBLE_SOURCES	:= $(addprefix $(SOURCES_DIR)/, $(COMPATIBLE_SOURCES))
 
-MAIN_SOURCE = $(SOURCES_DIR)/main.c
+MAIN_SOURCE	 = $(SOURCES_DIR)/main.c
 UTILS_SOURCE = $(SOURCES_DIR)/utils.c
-SOURCES = $(MAIN_SOURCE) $(filter $(LIBFT_SOURCES), $(COMPATIBLE_SOURCES))
-MAIN_OBJECT = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(MAIN_SOURCE))
+SOURCES		 = $(MAIN_SOURCE) $(filter $(LIBFT_SOURCES), $(COMPATIBLE_SOURCES))
+MAIN_OBJECT	 = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(MAIN_SOURCE))
 UTILS_OBJECT = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(UTILS_SOURCE))
-OBJECTS = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(SOURCES))
+OBJECTS		 = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(SOURCES))
 DEPENDENCIES = $(OBJECTS:.o=.d)
-TESTS_OUT = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.out, $(SOURCES))
+TESTS_OUT	 = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.out, $(SOURCES))
 
-ARGS = $(filter $(LIBFT_SOURCES), $(COMPATIBLE_SOURCES))
-ARGS := $(ARGS:$(SOURCES_DIR)/%.c=$(BUILD_DIR)/%.out)
+ARGS	 = $(filter $(LIBFT_SOURCES), $(COMPATIBLE_SOURCES))
+ARGS	:= $(ARGS:$(SOURCES_DIR)/%.c=$(BUILD_DIR)/%.out)
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -Wpedantic
+CC		 = cc
+CFLAGS	 = -Wall -Wextra -Werror -Wpedantic
 DEPFLAGS = -MMD -MF
-
 INCLUDES = -I./$(SOURCES_DIR) -I./$(LIBFT_DIR)
 
-MAKE = make
-MAKE_FLAGS = --no-print-directory -C
+MAKE		 = make
+MAKE_FLAGS	 = --no-print-directory -C
 
-MKDIR = mkdir
-MKDIR_FLAGS = -p
+MKDIR		 = mkdir
+MKDIR_FLAGS	 = -p
 
 RM = rm -fr
 
-ECHO = /usr/bin/echo -e
-
-COLOR_RESET = "\033[0m"
+ECHO		 = /usr/bin/echo -e
+COLOR_RESET	 = "\033[0m"
 COLOR_PURPLE = "\033[0;35m"
-
-MESSAGE =  $(COLOR_PURPLE)"[ MAKE ]"$(COLOR_RESET)
+MESSAGE		 = $(COLOR_PURPLE)"[ MAKE ]"$(COLOR_RESET)
 
 REMOVE_OUTPUT = > /dev/null
 
