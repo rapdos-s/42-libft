@@ -43,7 +43,7 @@ static int	alphabet_chars_tests(void)
 	{
 		if (alphabet[i] != buffer[i])
 		{
-			printf(FAIL_ALERT "ft_putchar_fd: Fail on alpha test\n");
+			printf(FAIL_ALERT "ft_putchar_fd: Fail on alphabet test\n");
 			return (0);
 		}
 		i++;
@@ -121,7 +121,7 @@ static int	special_chars_tests(void)
 	{
 		if (special_chars[i] != buffer[i])
 		{
-			printf(FAIL_ALERT "ft_putchar_fd: Fail on special_chars test\n");
+			printf(FAIL_ALERT "ft_putchar_fd: Fail on special chars test\n");
 			return (0);
 		}
 		i++;
@@ -149,7 +149,7 @@ static int	terminate_char_tests(void)
 	}
 	if (buffer[0] != '\0')
 	{
-		printf(FAIL_ALERT "ft_putchar_fd: Fail on special_chars test\n");
+		printf(FAIL_ALERT "ft_putchar_fd: Fail on terminate char test\n");
 		return (0);
 	}
 	return (1);
