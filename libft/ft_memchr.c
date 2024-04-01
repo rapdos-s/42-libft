@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:34 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/27 19:47:15 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/03/31 13:47:02 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*uc_s;
-
-	uc_s = (unsigned char *) s;
-	while (n--)
-	{
-		if (*uc_s == (unsigned char) c)
-			return (uc_s);
-		uc_s++;
-	}
+	(void) s;
+	(void) c;
+	(void) n;
 	return (NULL);
 }

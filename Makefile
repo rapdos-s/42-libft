@@ -57,15 +57,24 @@ COMPATIBLE_SOURCES	 = test_ft_isalpha.c \
 					   test_ft_putchar_fd.c \
 					   test_ft_putstr_fd.c \
 					   test_ft_putendl_fd.c \
-					   test_ft_putnbr_fd.c
+					   test_ft_putnbr_fd.c \
+					   test_ft_lstnew.c \
+					   test_ft_lstadd_front.c \
+					   test_ft_lstsize.c \
+					   test_ft_lstlast.c \
+					   test_ft_lstadd_back.c \
+					   test_ft_lstdelone.c \
+					   test_ft_lstclear.c \
+					   test_ft_lstiter.c \
+					   test_ft_lstmap.c
 COMPATIBLE_SOURCES	:= $(addprefix $(SOURCES_DIR)/, $(COMPATIBLE_SOURCES))
 
 MAIN_SOURCE	 = $(SOURCES_DIR)/main.c
 UTILS_SOURCE = $(SOURCES_DIR)/utils.c
 SOURCES		 = $(MAIN_SOURCE) $(filter $(LIBFT_SOURCES), $(COMPATIBLE_SOURCES))
-MAIN_OBJECT	 = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(MAIN_SOURCE))
-UTILS_OBJECT = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(UTILS_SOURCE))
-OBJECTS		 = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.o, $(SOURCES))
+MAIN_OBJECT	 = $(patsubst $(SOURCES_DIR)/%.c,$(BUILD_DIR)/%.o,$(MAIN_SOURCE))
+UTILS_OBJECT = $(patsubst $(SOURCES_DIR)/%.c,$(BUILD_DIR)/%.o,$(UTILS_SOURCE))
+OBJECTS		 = $(patsubst $(SOURCES_DIR)/%.c,$(BUILD_DIR)/%.o,$(SOURCES))
 DEPENDENCIES = $(OBJECTS:.o=.d)
 TESTS_OUT	 = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.out, $(SOURCES))
 
@@ -120,10 +129,10 @@ $(LIBFT): force
 		$(MAKE) $(MAKE_FLAGS) $(LIBFT_DIR) all $(REMOVE_OUTPUT); \
 	fi
 
-$(NAME): $(LIBFT) $(OBJECTS) $(MAIN_OBJECT)
+$(NAME): $(LIBFT) $(OBJECTS) $(UTILS_OBJECT) $(MAIN_OBJECT)
 	@if [ $(MAKELEVEL) -eq 0 ]; then \
 		$(ECHO) $(MESSAGE) "Building $(NAME)"; \
-		$(CC) $(CFLAGS) $(MAIN_OBJECT) $(INCLUDES) -o $(NAME); \
+		$(CC) $(CFLAGS) $(INCLUDES) $(UTILS_OBJECT) $(MAIN_OBJECT) -o $(NAME); \
 	fi
 
 $(BUILD_DIR):
@@ -132,11 +141,11 @@ $(BUILD_DIR):
 ################################################################################
 
 $(BUILD_DIR)/%.o: $(SOURCES_DIR)/%.c $(UTILS_OBJECT) $(LIBFT) | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(DEPFLAGS) $(BUILD_DIR)/$*.d $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $(INCLUDES) $< $(DEPFLAGS) $(BUILD_DIR)/$*.d -o $@
 	@$(CC) $(CFLAGS) $(INCLUDES) $< $(LIBFT) $(UTILS_OBJECT) -o $(@:.o=.out)
 
 $(UTILS_OBJECT): $(UTILS_SOURCE) | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) $(DEPFLAGS) $(BUILD_DIR)/utils.d $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $(DEPFLAGS) $(BUILD_DIR)/utils.d $(INCLUDES) $< -o $@
 
 ################################################################################
 

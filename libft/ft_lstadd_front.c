@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:43 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/27 19:29:44 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/03/31 13:52:32 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	new -> next = *lst;
-	*lst = new;
+	(void) lst;
+	(void) new;
 }

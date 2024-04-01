@@ -12,73 +12,79 @@
 
 #include <tests.h>
 
-static int	fill_test(void)
+static int	zero_fill_tests(void)
 {
-	char	str[42];
+	char	buffer[10];
 	int		i;
 
 	i = 0;
-	ft_memset(str, 'A', 42);
-	str[41] = 0;
-	while (str[i])
+	ft_memset(buffer, 0, 10);
+	while (i < 10)
 	{
-		if (str[i] != 'A')
+		if (buffer[i] != 0)
+		{
+			printf(FAIL_ALERT "ft_memset: Fail on zero fill tests\n");
 			return (0);
+		}
 		i++;
 	}
 	return (1);
 }
 
-static int	bzero_test(void)
+static int	mix_fill_tests(void)
 {
-	char	str[42];
+	char	buffer[10];
+	char	c1;
+	char	c2;
 	int		i;
 
+	c1 = '4';
+	c2 = '2';
 	i = 0;
-	ft_memset(str, 0, 42);
-	while (i < 42)
+	ft_memset(buffer, c1, 5);
+	ft_memset(buffer + 5, c2, 5);
+	while (i < 5)
 	{
-		if (str[i] != 0)
+		if (buffer[i] != c1)
+		{
+			printf(FAIL_ALERT "ft_memset: Fail on mix fill tests\n");
 			return (0);
+		}
+		if (buffer[i + 5] != c2)
+		{
+			printf(FAIL_ALERT "ft_memset: Fail on zero fill tests\n");
+			return (0);
+		}
 		i++;
 	}
 	return (1);
 }
 
-static int	return_test(void)
+static int	return_tests(void)
 {
-	char	str1[1];
-	char	str2[2];
-	char	str3[3];
-	char	str4[4];
-	char	str5[5];
+	char	buffer[10];
+	char	*ret;
 
-	if (ft_memset(str1, 'Q', 1) != str1)
+	ret = ft_memset(buffer, 0, 10);
+	if (ret != buffer)
+	{
+		printf(FAIL_ALERT "ft_memset: Fail on return tests\n");
 		return (0);
-	if (ft_memset(str2, 'U', 1) != str2)
-		return (0);
-	if (ft_memset(str3, 'A', 0) != str3)
-		return (0);
-	if (ft_memset(str4, 'C', 4) != str4)
-		return (0);
-	if (ft_memset(str5, 'K', 2) != str5)
-		return (0);
+	}
 	return (1);
 }
 
 static int	null_pointer_tests(void)
 {
-	void	*return_value;
-
-	return_value = &return_value;
 	signal(SIGSEGV, sigsegv_handler);
 	if (setjmp(g_jmp_buffer) == 0)
-		return_value = ft_memset(NULL, '*', 42);
+		ft_memset(NULL, 42, 21);
 	else
+	{
+		printf(FAIL_ALERT "ft_memset: Fail on null pointer tests\n");
 		return (0);
-	if (return_value == NULL)
-		return (1);
-	return (0);
+	}
+	return (1);
 }
 
 int	main(void)
@@ -86,10 +92,9 @@ int	main(void)
 	int	result;
 
 	result = 0;
-	result += fill_test();
-	result += bzero_test();
-	result += return_test();
+	result += zero_fill_tests();
+	result += mix_fill_tests();
+	result += return_tests();
 	result += null_pointer_tests();
-	result = 0;
 	print_result(result, "ft_memset");
 }

@@ -51,6 +51,12 @@ extern jmp_buf	g_jmp_buffer;
 #  define FAIL_ALERT "[ ! ] "
 # endif // FT_PATTERNS
 
+typedef struct s_bzero_test
+{
+	int		a;
+	char	b;
+}			t_bzero_test;
+
 void	print_result(int passed, const char *test_name);
 void	sigsegv_handler(int signum);
 

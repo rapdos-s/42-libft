@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:03 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/27 19:29:04 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/03/31 13:45:30 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 int	ft_toupper(int c)
 {
-	return (c & ~(ft_isalpha(c) >> 5));
+	(void) c;
+	return (0);
 }

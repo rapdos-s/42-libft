@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:32 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/27 19:45:16 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/03/30 00:16:22 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,19 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*u_src;
-	unsigned char	*u_dest;
 	size_t			i;
+	unsigned char	*u_dest;
+	unsigned char	*u_src;
 
 	if (dest == NULL || src == NULL)
 		return (NULL);
-	u_src = (unsigned char *)src;
+	i = 0;
 	u_dest = (unsigned char *)dest;
-	if (u_dest > u_src)
+	u_src = (unsigned char *)src;
+	while (i < n)
 	{
-		i = n;
-		while (--i > 0)
-			u_dest[i] = u_src[i];
-	}
-	else
-	{
-		i = 0;
-		while (i < n)
-		{
-			u_dest[i] = u_src[i];
-			i++;
-		}
+		u_dest[i] = u_src[i];
+		i++;
 	}
 	return (dest);
 }

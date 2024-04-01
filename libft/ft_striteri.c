@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:19 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/27 19:29:20 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/03/31 13:51:09 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] && f)
-	{
-		f(i, s + i);
-		i++;
-	}
+	(void) s;
+	(void) f;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:52 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/27 19:45:54 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:57:35 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char	*s_cpy;
+	size_t			i;
+	unsigned char	*u_s;
 
-	if (!s)
-		return ;
-	s_cpy = s;
-	while (n--)
-		*s_cpy++ = 0;
+	if (s)
+	{
+		i = 0;
+		u_s = (unsigned char *)s;
+		while (i < n)
+		{
+			u_s[i] = 0;
+			i++;
+		}
+	}
 }
