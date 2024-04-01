@@ -16,7 +16,6 @@ int	main(int argc, char *argv[])
 {
 	int	i;
 
-	signal(SIGSEGV, sigsegv_handler);
 	i = 1;
 	while (i < argc)
 	{
