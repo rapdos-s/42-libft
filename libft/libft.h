@@ -3,29 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:37:49 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/27 19:38:58 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:04:14 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-// struct va_list, va_end(), va_start()
-# include <stdarg.h>
-
 // malloc()
 # include <stdlib.h>
 
-// write ()
+// write() size_t
 # include <unistd.h>
-
-// Buffer size for get_next_line
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096
-# endif // BUFFER_SIZE
 
 # ifndef FT_RETURN_VALUES
 #  define FT_ISASCII_RETURN 1

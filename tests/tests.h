@@ -13,6 +13,9 @@
 #ifndef TESTS_H
 # define TESTS_H
 
+// errno
+# include <errno.h>
+
 // setjmp() longjmp() jmp_buf
 # include <setjmp.h>
 
@@ -22,7 +25,7 @@
 // wait()
 # include <sys/wait.h>
 
-// execl() fork()
+// execl() fork() pipe() read() size_t ssize_t
 # include <unistd.h>
 
 // ft_isalnum()
@@ -49,6 +52,7 @@ extern jmp_buf	g_jmp_buffer;
 
 # ifndef FT_PATTERNS
 #  define FAIL_ALERT "[ ! ] "
+#  define ERROR_ALERT "[ X ] "
 # endif // FT_PATTERNS
 
 typedef struct s_bzero_test
