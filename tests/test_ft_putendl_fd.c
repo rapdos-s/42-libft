@@ -17,7 +17,6 @@ static int	basic_string_tests(void)
 	char	buffer[11];
 	int		buffer_fd[2];
 	int		i;
-	ssize_t	nbytes;
 
 	if (pipe(buffer_fd) == -1)
 	{
@@ -26,12 +25,7 @@ static int	basic_string_tests(void)
 	}
 	ft_putendl_fd("Hello, 42!", buffer_fd[1]);
 	close(buffer_fd[1]);
-	nbytes = read(buffer_fd[0], buffer, sizeof(buffer));
-	if (nbytes == -1)
-	{
-		printf(ERROR_ALERT "ft_putendl_fd: read failed, errno = %d\n", errno);
-		return (0);
-	}
+	read(buffer_fd[0], buffer, sizeof(buffer));
 	i = 0;
 	while ("Hello, 42!\n"[i])
 	{
@@ -78,7 +72,6 @@ static int	special_char_tests(void)
 	char	buffer[42];
 	int		buffer_fd[2];
 	int		i;
-	ssize_t	nbytes;
 
 	if (pipe(buffer_fd) == -1)
 	{
@@ -87,12 +80,7 @@ static int	special_char_tests(void)
 	}
 	ft_putendl_fd("!@#$%¨&*()_+-={}[]:;.,<>?/|\\\"'`^~°ºª", buffer_fd[1]);
 	close(buffer_fd[1]);
-	nbytes = read(buffer_fd[0], buffer, sizeof(buffer));
-	if (nbytes == -1)
-	{
-		printf(ERROR_ALERT "ft_putendl_fd: read failed, errno = %d\n", errno);
-		return (0);
-	}
+	read(buffer_fd[0], buffer, sizeof(buffer));
 	i = 0;
 	while ("!@#$%¨&*()_+-={}[]:;.,<>?/|\\\"'`^~°ºª\n"[i])
 	{

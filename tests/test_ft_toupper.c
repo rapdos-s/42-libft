@@ -26,8 +26,9 @@ static int	lowercase_tests(void)
 		if (ft_toupper(lowercase_characters[i]) != uppercase_characters[i])
 		{
 			printf(FAIL_ALERT "ft_toupper: Fail on lowercase test\n");
-			printf("%c = %c\n", ft_toupper(lowercase_characters[i]), uppercase_characters[i]);
-			// return (0);
+			printf("%c = %c\n",
+				ft_toupper(lowercase_characters[i]), uppercase_characters[i]);
+			return (0);
 		}
 		i++;
 	}

@@ -48,11 +48,8 @@ static int	empty_tests(void)
 	size_t	return_value;
 
 	i = 0;
-	while (i < 10)
-	{
+	while (i++ < 10)
 		dest[i] = 'A' + i;
-		i++;
-	}
 	signal(SIGSEGV, sigsegv_handler);
 	if (setjmp(g_jmp_buffer) == 0)
 	{
@@ -74,19 +71,16 @@ static int	empty_tests(void)
 static int	return_tests(void)
 {
 	size_t	return_value[3];
-	size_t	i;
 	char	dest[42];
 
-	i = 0;
-	while (i < 5)
-		dest[i++] = 'A';
 	signal(SIGSEGV, sigsegv_handler);
 	if (setjmp(g_jmp_buffer) == 0)
 	{
 		return_value[0] = ft_strlcpy(dest, "42", 0);
 		return_value[1] = ft_strlcpy(dest, "Hello, 42!", 42);
 		return_value[2] = ft_strlcpy(dest, "Hello, 42!", 5);
-		if(return_value[0] != 2 || return_value[1] != 11 || return_value[2] != 11)
+		if (return_value[0] != 2 || \
+			return_value[1] != 11 || return_value[2] != 11)
 		{
 			printf(FAIL_ALERT "ft_strlcpy: Fail on return value tests\n");
 			return (0);
@@ -97,7 +91,7 @@ static int	return_tests(void)
 		printf(FAIL_ALERT "ft_strlcpy: Fail on return value tests\n");
 		return (0);
 	}
-	return(1);
+	return (1);
 }
 
 static int	null_pointer_tests(void)

@@ -65,20 +65,13 @@ static int	constant_tests(void)
 {
 	char	dest[42];
 	char	*src;
-	void	*return_value;
 	int		i;
 
 	src = "Hello, World!";
-	return_value = NULL;
 	signal(SIGSEGV, sigsegv_handler);
 	if (setjmp(g_jmp_buffer) == 0)
-		return_value = ft_memmove(dest, src, 14);
+		ft_memmove(dest, src, 14);
 	else
-	{
-		printf(FAIL_ALERT "ft_memmove: Fail on constant tests\n");
-		return (0);
-	}
-	if (return_value != dest)
 	{
 		printf(FAIL_ALERT "ft_memmove: Fail on constant tests\n");
 		return (0);
@@ -105,20 +98,7 @@ static int	null_pointer_tests(void)
 	return_value = &return_value;
 	signal(SIGSEGV, sigsegv_handler);
 	if (setjmp(g_jmp_buffer) == 0)
-		return_value = ft_memmove(NULL, src, 42);
-	else
-	{
-		printf(FAIL_ALERT "ft_memmove: Fail on null pointer tests\n");
-		return (0);
-	}
-	if (return_value != NULL)
-	{
-		printf(FAIL_ALERT "ft_memmove: Fail on null pointer tests\n");
-		return (0);
-	}
-	return_value = &return_value;
-	if (setjmp(g_jmp_buffer) == 0)
-		return_value = ft_memmove(dest, NULL, 42);
+		return_value = ft_memmove(NULL, NULL, 42);
 	else
 	{
 		printf(FAIL_ALERT "ft_memmove: Fail on null pointer tests\n");

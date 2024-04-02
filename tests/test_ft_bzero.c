@@ -18,7 +18,7 @@ static int	half_fill_tests(void)
 	int		i;
 
 	i = 0;
-	while(i < 42)
+	while (i < 42)
 	{
 		str[i] = '*';
 		i++;
