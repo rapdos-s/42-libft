@@ -21,7 +21,7 @@ static int	const_tests(void)
 	signal(SIGSEGV, sigsegv_handler);
 	if (setjmp(g_jmp_buffer) == 0)
 	{
-		return_pointer[0] = ft_strchr("Hello, 42!", '4');
+		return_pointer[0] = ft_strchr("Hello, 42!", 'l');
 		return_pointer[1] = ft_strchr("Hello, 42!", '\0');
 	}
 	else
@@ -29,12 +29,12 @@ static int	const_tests(void)
 		printf(FAIL_ALERT "ft_strchr: Fail on const tests\n");
 		return (0);
 	}
-	if (return_pointer[0][0] != '4' || return_pointer[0][1] != '2')
+	if (return_pointer[0] == NULL || return_pointer[0][0] != 'l' || return_pointer[0][2] != 'o')
 	{
 		printf(FAIL_ALERT "ft_strchr: Fail on const tests\n");
 		return (0);
 	}
-	if (return_pointer[1] != NULL)
+	if (return_pointer[1] == NULL || return_pointer[1][0] != '\0')
 	{
 		printf(FAIL_ALERT "ft_strchr: Fail on const tests\n");
 		return (0);
