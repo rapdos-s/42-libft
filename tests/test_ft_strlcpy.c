@@ -47,8 +47,8 @@ static int	empty_tests(void)
 	int		i;
 	size_t	return_value;
 
-	i = 0;
-	while (i++ < 10)
+	i = -1;
+	while (++i < 10)
 		dest[i] = 'A' + i;
 	signal(SIGSEGV, sigsegv_handler);
 	if (setjmp(g_jmp_buffer) == 0)

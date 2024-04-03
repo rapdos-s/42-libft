@@ -89,9 +89,9 @@ re: fclean all
 
 mandatory: $(OBJECTS)
 
-$(NAME): mandatory
-
 bonus: $(BONUS_OBJECTS)
+
+$(NAME): mandatory
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(DEPFLAGS) $(@:.o=.d)

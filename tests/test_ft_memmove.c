@@ -91,8 +91,6 @@ static int	constant_tests(void)
 
 static int	null_pointer_tests(void)
 {
-	char	dest[42];
-	char	src[42];
 	void	*return_value;
 
 	return_value = &return_value;

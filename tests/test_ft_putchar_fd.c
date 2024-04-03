@@ -86,7 +86,7 @@ static int	special_chars_tests(void)
 	i = -1;
 	while (special_chars[++i])
 		ft_putchar_fd(special_chars[i], buffer_fd[1]);
-	nbytes = read(buffer_fd[0], buffer, sizeof(buffer));
+	read(buffer_fd[0], buffer, sizeof(buffer));
 	i = -1;
 	while (special_chars[++i])
 	{
