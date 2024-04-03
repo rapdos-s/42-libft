@@ -6,7 +6,7 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:09 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/31 13:46:18 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:53:11 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,20 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	(void) s;
-	(void) c;
+	size_t	i;
+	char	u_c;
+
+	u_c = (char)c;
+	if (s == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i])
+		i++;
+	while (i > 0)
+	{
+		if (s[i] == u_c)
+			return ((char *)&s[i]);
+		i--;
+	}
 	return (NULL);
 }
