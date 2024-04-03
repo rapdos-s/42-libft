@@ -46,6 +46,7 @@ extern jmp_buf	g_jmp_buffer;
 
 # ifndef FT_COLORS
 #  define FT_GREEN "\033[0;32m"
+#  define FT_RED "\033[0;31m"
 #  define FT_YELLOW "\033[0;33m"
 #  define FT_RESET "\033[0m"
 # endif // FT_COLORS
