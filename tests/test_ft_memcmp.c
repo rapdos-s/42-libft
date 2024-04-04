@@ -32,10 +32,6 @@ static int	short_size_tests(void)
 		ft_memcmp("AB", "ABC", 0) != 0)
 	{
 		printf(FAIL_ALERT "ft_memcmp: Fail on short size tests\n");
-		printf("ft_memcmp(\"ABC\", \"AB\", 2) == %d\n", ft_memcmp("ABC", "AB", 2));
-		printf("ft_memcmp(\"AB\", \"ABC\", 2) == %d\n", ft_memcmp("AB", "ABC", 2));
-		printf("ft_memcmp(\"ABC\", \"AB\", 0) == %d\n", ft_memcmp("ABC", "AB", 0));
-		printf("ft_memcmp(\"AB\", \"ABC\", 0) == %d\n", ft_memcmp("AB", "ABC", 0));
 		return (0);
 	}
 	return (1);

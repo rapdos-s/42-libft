@@ -32,7 +32,7 @@ void	print_result(int passed, const char *test_name)
 
 void	sigsegv_handler(int signum)
 {
-	(void) signum;
-	printf(ERROR_ALERT FT_RED "Segmentation fault detected\n" FT_RESET);
+	if (signum == SIGSEGV)
+		printf(ERROR_ALERT FT_RED "Segmentation fault detected\n" FT_RESET);
 	longjmp(g_jmp_buffer, 1);
 }
