@@ -16,14 +16,9 @@ static int	null_pointer_tests(void)
 {
 	char	dest[42];
 
-	signal(SIGSEGV, sigsegv_handler);
-	if (setjmp(g_jmp_buffer) == 0)
-	{
-		ft_strlcat(NULL, "Hello, 42!", 42);
-		ft_strlcat(dest, NULL, 42);
-		ft_strlcat(NULL, NULL, 42);
-	}
-	else
+	if (ft_strlcat(NULL, "Hello, 42!", 42) != 0 || \
+		ft_strlcat(dest, NULL, 42) != 0 || \
+		ft_strlcat(NULL, NULL, 42) != 0)
 	{
 		printf(FAIL_ALERT "ft_strlcat: Fail on null pointer test\n");
 		return (0);
@@ -35,7 +30,13 @@ int	main(void)
 {
 	int	result;
 
-	result = 0;
-	result += null_pointer_tests();
+	signal(SIGSEGV, sigsegv_handler);
+	if (setjmp(g_jmp_buffer) == 0)
+	{
+		result = 0;
+		result += null_pointer_tests();
+	}
+	else
+		printf(FAIL_ALERT "ft_strlcat: Memory error during test\n");
 	print_result(result, "ft_strlcat");
 }

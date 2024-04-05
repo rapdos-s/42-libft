@@ -14,27 +14,11 @@
 
 static int	const_tests(void)
 {
-	char	*return_pointer[2];
-
-	return_pointer[0] = NULL;
-	return_pointer[1] = NULL;
-	signal(SIGSEGV, sigsegv_handler);
-	if (setjmp(g_jmp_buffer) == 0)
-	{
-		return_pointer[0] = ft_strrchr("Hello, 42!", 'l');
-		return_pointer[1] = ft_strrchr("Hello, 42!", '\0');
-	}
-	else
-	{
-		printf(FAIL_ALERT "ft_strrchr: Fail on const tests\n");
-		return (0);
-	}
-	if (return_pointer[0] == NULL || return_pointer[0][0] != 'l' || return_pointer[0][2] != ',')
-	{
-		printf(FAIL_ALERT "ft_strrchr: Fail on const tests\n");
-		return (0);
-	}
-	if (return_pointer[1] == NULL || return_pointer[1][0] != '\0')
+	if (ft_strrchr("Hello, 42!", 'l') == NULL || \
+		ft_strrchr("Hello, 42!", 'l')[0] != 'l' || \
+		ft_strrchr("Hello, 42!", 'l')[2] != ',' || \
+		ft_strrchr("Hello, 42!", '\0') == NULL || \
+		ft_strrchr("Hello, 42!", '\0')[0] != '\0')
 	{
 		printf(FAIL_ALERT "ft_strrchr: Fail on const tests\n");
 		return (0);
@@ -44,18 +28,7 @@ static int	const_tests(void)
 
 static int	not_found_tests(void)
 {
-	char	*return_pointer;
-
-	return_pointer = "ABC";
-	signal(SIGSEGV, sigsegv_handler);
-	if (setjmp(g_jmp_buffer) == 0)
-		return_pointer = ft_strrchr("Hello, 42!", 'Z');
-	else
-	{
-		printf(FAIL_ALERT "ft_strrchr: Fail on not found tests\n");
-		return (0);
-	}
-	if (return_pointer != NULL)
+	if (ft_strrchr("Hello, 42!", 'Z') != NULL)
 	{
 		printf(FAIL_ALERT "ft_strrchr: Fail on not found tests\n");
 		return (0);
@@ -65,18 +38,7 @@ static int	not_found_tests(void)
 
 static int	empty_string_tests(void)
 {
-	char	*return_pointer;
-
-	return_pointer = "ABC";
-	signal(SIGSEGV, sigsegv_handler);
-	if (setjmp(g_jmp_buffer) == 0)
-		return_pointer = ft_strrchr("", '*');
-	else
-	{
-		printf(FAIL_ALERT "ft_strrchr: Fail on empty string tests\n");
-		return (0);
-	}
-	if (return_pointer != NULL)
+	if (ft_strrchr("", '*') != NULL)
 	{
 		printf(FAIL_ALERT "ft_strrchr: Fail on empty string tests\n");
 		return (0);
@@ -86,18 +48,7 @@ static int	empty_string_tests(void)
 
 static int	null_pointer_tests(void)
 {
-	char	*return_pointer;
-
-	return_pointer = "ABC";
-	signal(SIGSEGV, sigsegv_handler);
-	if (setjmp(g_jmp_buffer) == 0)
-		return_pointer = ft_strrchr(NULL, '*');
-	else
-	{
-		printf(FAIL_ALERT "ft_strrchr: Fail on null pointer tests\n");
-		return (0);
-	}
-	if (return_pointer != NULL)
+	if (ft_strrchr(NULL, '*') != NULL)
 	{
 		printf(FAIL_ALERT "ft_strrchr: Fail on null pointer tests\n");
 		return (0);
@@ -110,9 +61,15 @@ int	main(void)
 	int	result;
 
 	result = 0;
-	result += const_tests();
-	result += not_found_tests();
-	result += empty_string_tests();
-	result += null_pointer_tests();
+	signal(SIGSEGV, sigsegv_handler);
+	if (setjmp(g_jmp_buffer) == 0)
+	{
+		result += const_tests();
+		result += not_found_tests();
+		result += empty_string_tests();
+		result += null_pointer_tests();
+	}
+	else
+		printf(FAIL_ALERT "ft_strrchr: Memory error during test\n");
 	print_result(result, "ft_strrchr");
 }

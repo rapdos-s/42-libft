@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:12 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/04/03 15:40:35 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:06:45 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	size_t	i;
 
 	if (s1 == NULL && s2 == NULL)
-		return (0);	
+		return (0);
 	if (s1 == NULL)
 		return (-(int) s2[0]);
 	if (s2 == NULL)
