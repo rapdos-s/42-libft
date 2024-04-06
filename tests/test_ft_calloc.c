@@ -14,46 +14,51 @@
 
 static int	common_cases_tests(void)
 {
-	char	*str;
-	int		nmemb;
-
-	nmemb = 10;
-	str = ft_calloc(nmemb, sizeof(char));
-	while (nmemb >= 0)
-	{
-		nmemb--;
-		if (str == NULL || str[nmemb] != 0)
-		{
-			printf(FAIL_ALERT "ft_calloc: Fail on common cases tests\n");
-			free(str);
-			return (0);
-		}
-	}
-	free(str);
-	return (1);
-}
-
-static int	struct_tests(void)
-{
-	t_omnitype	*omnivar;
+	char		*str;
 	int			nmemb;
+	t_omnitype	*omnivar;
 
 	nmemb = 42;
+	str = ft_calloc(nmemb, sizeof(char));
 	omnivar = ft_calloc(nmemb, sizeof(t_omnitype));
 	while (nmemb >= 0)
 	{
 		nmemb--;
-		if (omnivar == NULL || \
+		if (str == NULL || str[nmemb] != 0 || \
+			omnivar == NULL || \
 			omnivar[1].c != '\0' || \
 			omnivar[1].ptr != NULL || \
 			omnivar[1].arr_i[21] != 0)
 		{
 			printf(FAIL_ALERT "ft_calloc: Fail on common cases tests\n");
+			free(str);
 			free(omnivar);
 			return (0);
 		}
 	}
 	free(omnivar);
+	free(str);
+	return (1);
+}
+
+static int	alloc_size_tests(void)
+{
+	char	*char21;
+	long	*long42;
+
+	reset_g_alloc_size_request();
+	char21 = ft_calloc(21, sizeof(char));
+	long42 = ft_calloc(42, sizeof(long));
+	if (char21 == NULL || long42 == NULL || \
+	get_g_alloc_size_request() != (42 * sizeof(long)) + (21 * sizeof(char)))
+	{
+		printf(FAIL_ALERT "ft_calloc: Fail on alloc size tests\n");
+		free(char21);
+		free(long42);
+		return (0);
+	}
+	free(char21);
+	free(long42);
 	return (1);
 }
 
@@ -84,9 +89,9 @@ static int	allocation_fail_tests(void)
 {
 	void	*ptr;
 
-	set_run_original_malloc(FALSE);
+	set_g_run_original_malloc(FALSE);
 	ptr = ft_calloc(21, 42);
-	set_run_original_malloc(TRUE);
+	set_g_run_original_malloc(TRUE);
 	if (ptr != NULL)
 	{
 		printf(FAIL_ALERT "ft_calloc: Fail on allocation fail tests\n");
@@ -104,7 +109,7 @@ int	main(void)
 	{
 		result = 0;
 		result += common_cases_tests();
-		result += struct_tests();
+		result += alloc_size_tests();
 		result += zero_values_tests();
 		result += allocation_fail_tests();
 	}

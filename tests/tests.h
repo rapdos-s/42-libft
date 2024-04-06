@@ -107,7 +107,9 @@ typedef struct s_omnitype {
 
 void	print_result(int passed, const char *test_name);
 void	sigsegv_handler(int signum);
-void	set_run_original_malloc(int value);
+void	set_g_run_original_malloc(int value);
+void	reset_g_alloc_size_request(void);
+size_t	get_g_alloc_size_request(void);
 void	*malloc(size_t size);
 
 #endif // TESTS_H

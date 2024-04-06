@@ -59,9 +59,9 @@ static int	allocation_fail_tests(void)
 {
 	char	*str;
 
-	set_run_original_malloc(FALSE);
+	set_g_run_original_malloc(FALSE);
 	str = ft_strdup("Hello, 42!");
-	set_run_original_malloc(TRUE);
+	set_g_run_original_malloc(TRUE);
 	if (str != NULL)
 	{
 		printf(FAIL_ALERT "ft_strdup: Fail on allocation fail tests\n");

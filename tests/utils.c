@@ -12,8 +12,9 @@
 
 #include <tests.h>
 
-jmp_buf		g_jmp_buffer;
-static int	g_run_original_malloc = TRUE;
+jmp_buf			g_jmp_buffer;
+static int		g_run_original_malloc = TRUE;
+static size_t	g_alloc_size_request = 0;
 
 void	print_result(int passed, const char *test_name)
 {
@@ -38,7 +39,7 @@ void	sigsegv_handler(int signum)
 	longjmp(g_jmp_buffer, 1);
 }
 
-void	set_run_original_malloc(int value)
+void	set_g_run_original_malloc(int value)
 {
 	if (value == 0)
 		g_run_original_malloc = FALSE;
@@ -46,10 +47,21 @@ void	set_run_original_malloc(int value)
 		g_run_original_malloc = TRUE;
 }
 
+void	reset_g_alloc_size_request(void)
+{
+	g_alloc_size_request = 0;
+}
+
+size_t	get_g_alloc_size_request(void)
+{
+	return (g_alloc_size_request);
+}
+
 void	*malloc(size_t size)
 {
 	void	*(*original_malloc)(size_t);
 
+	g_alloc_size_request += size;
 	original_malloc = (void *(*)(size_t))dlsym(RTLD_NEXT, "malloc");
 	if (g_run_original_malloc == TRUE)
 		return (original_malloc(size));
