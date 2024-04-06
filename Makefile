@@ -81,10 +81,11 @@ TESTS_OUT	 = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.out, $(SOURCES))
 ARGS	 = $(filter $(LIBFT_SOURCES), $(COMPATIBLE_SOURCES))
 ARGS	:= $(ARGS:$(SOURCES_DIR)/%.c=$(BUILD_DIR)/%.out)
 
-CC		 = cc
-CFLAGS	 = -Wall -Wextra -Werror -Wpedantic
-DEPFLAGS = -MMD -MF
-INCLUDES = -I./$(SOURCES_DIR) -I./$(LIBFT_DIR)
+CC			 = cc
+CFLAGS		 = -Wall -Wextra -Werror -Wpedantic
+EXTRAFLAGS	 = -ldl
+DEPFLAGS	 = -MMD -MF
+INCLUDES	 = -I./$(SOURCES_DIR) -I./$(LIBFT_DIR)
 
 MAKE		 = make
 MAKE_FLAGS	 = --no-print-directory -C
@@ -132,7 +133,8 @@ $(LIBFT): force
 $(NAME): $(LIBFT) $(OBJECTS) $(UTILS_OBJECT) $(MAIN_OBJECT)
 	@if [ $(MAKELEVEL) -eq 0 ]; then \
 		$(ECHO) $(MESSAGE) "Building $(NAME)"; \
-		$(CC) $(CFLAGS) $(INCLUDES) $(UTILS_OBJECT) $(MAIN_OBJECT) -o $(NAME); \
+		$(CC) $(CFLAGS) $(EXTRAFLAGS) $(INCLUDES) \
+			$(UTILS_OBJECT) $(MAIN_OBJECT) -o $(NAME); \
 	fi
 
 $(BUILD_DIR):
@@ -142,7 +144,8 @@ $(BUILD_DIR):
 
 $(BUILD_DIR)/%.o: $(SOURCES_DIR)/%.c $(UTILS_OBJECT) $(LIBFT) | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) -c $(INCLUDES) $< $(DEPFLAGS) $(BUILD_DIR)/$*.d -o $@
-	@$(CC) $(CFLAGS) $(INCLUDES) $< $(LIBFT) $(UTILS_OBJECT) -o $(@:.o=.out)
+	@$(CC) $(CFLAGS) $(EXTRAFLAGS) $(INCLUDES) \
+		$< $(LIBFT) $(UTILS_OBJECT) -o $(@:.o=.out)
 
 $(UTILS_OBJECT): $(UTILS_SOURCE) | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) -c $(DEPFLAGS) $(BUILD_DIR)/utils.d $(INCLUDES) $< -o $@

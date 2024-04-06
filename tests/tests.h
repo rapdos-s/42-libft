@@ -13,11 +13,21 @@
 #ifndef TESTS_H
 # define TESTS_H
 
+# ifndef _GNU_SOURCE
+#  define _GNU_SOURCE
+# endif // _GNU_SOURCE
+
+// dlsym RTLD_NEXT
+# include <dlfcn.h>
+
 // errno
 # include <errno.h>
 
 // setjmp() longjmp() jmp_buf
 # include <setjmp.h>
+
+// free()
+# include <stdlib.h>
 
 // printf()
 # include <stdio.h>
@@ -34,7 +44,7 @@
 // signal() SIGSEGV
 # include <signal.h>
 
-extern jmp_buf	g_jmp_buffer;
+extern jmp_buf		g_jmp_buffer;
 
 # ifndef FT_RETURN_VALUES
 #  define FT_ISASCII_RETURN 1
@@ -56,13 +66,48 @@ extern jmp_buf	g_jmp_buffer;
 #  define ERROR_ALERT "[ X ] "
 # endif // FT_PATTERNS
 
+# define FALSE 0
+# define TRUE 1
+
 typedef struct s_bzero_test
 {
 	int		a;
 	char	b;
 }			t_bzero_test;
 
+typedef struct s_omnitype {
+	char			c;
+	short			s;
+	int				i;
+	long			l;
+	ssize_t			ssize;
+	unsigned char	uc;
+	unsigned short	us;
+	unsigned int	ui;
+	unsigned long	ul;
+	size_t			size;
+	void			*ptr;
+	char			*str;
+	short			*short_ptr;
+	int				*int_ptr;
+	long			*long_ptr;
+	ssize_t			*ssize_ptr;
+	char			arr_c[42];
+	short			arr_s[42];
+	int				arr_i[42];
+	long			arr_l[42];
+	ssize_t			arr_ssize[42];
+	unsigned char	arr_uc[42];
+	unsigned short	arr_us[42];
+	unsigned int	arr_ui[42];
+	unsigned long	arr_ul[42];
+	size_t			arr_size[42];
+	void			*ptr_arr[21][42][84];
+}	t_omnitype;
+
 void	print_result(int passed, const char *test_name);
 void	sigsegv_handler(int signum);
+void	set_run_original_malloc(int value);
+void	*malloc(size_t size);
 
 #endif // TESTS_H
