@@ -111,5 +111,6 @@ void	set_g_run_original_malloc(int value);
 void	reset_g_alloc_size_request(void);
 size_t	get_g_alloc_size_request(void);
 void	*malloc(size_t size);
+int	test_strcmp(const char *s1, const char *s2);
 
 #endif // TESTS_H
