@@ -5,174 +5,107 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/27 20:56:54 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/03/27 20:56:54 by rapdos-s         ###   ########.fr        #
+#    Created: 2024/03/27 20:57:09 by rapdos-s          #+#    #+#              #
+#    Updated: 2024/03/27 20:57:09 by rapdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-BUILD_DIR	 = build
-LIBFT_DIR	 = libft
-SOURCES_DIR	 = tests
+NAME = libft.a
 
-NAME	 = libft_tester.out
-LIBFT	 = $(LIBFT_DIR)/libft.a
+SOURCES			 = ft_isalpha.c \
+				   ft_isdigit.c \
+				   ft_isalnum.c \
+				   ft_isascii.c \
+				   ft_isprint.c \
+				   ft_strlen.c \
+				   ft_memset.c \
+				   ft_bzero.c \
+				   ft_memcpy.c \
+				   ft_memmove.c \
+				   ft_strlcpy.c \
+				   ft_strlcat.c \
+				   ft_toupper.c \
+				   ft_tolower.c \
+				   ft_strchr.c \
+				   ft_strrchr.c \
+				   ft_strncmp.c \
+				   ft_memchr.c \
+				   ft_memcmp.c \
+				   ft_strnstr.c \
+				   ft_atoi.c \
+				   ft_calloc.c \
+				   ft_strdup.c \
+				   ft_substr.c \
+				   ft_strjoin.c \
+				   ft_strtrim.c \
+				   ft_split.c \
+				   ft_itoa.c \
+				   ft_strmapi.c \
+				   ft_striteri.c \
+				   ft_putchar_fd.c \
+				   ft_putstr_fd.c \
+				   ft_putendl_fd.c \
+				   ft_putnbr_fd.c
+BONUS_SOURCES	 = ft_lstnew.c \
+				   ft_lstadd_front.c \
+				   ft_lstsize.c \
+				   ft_lstlast.c \
+				   ft_lstadd_back.c \
+				   ft_lstdelone.c \
+				   ft_lstclear.c \
+				   ft_lstiter.c \
+				   ft_lstmap.c
 
-LIBFT_OBJS		 = $(wildcard $(LIBFT_DIR)/*.o)
-LIBFT_SOURCES	 = $(patsubst \
-					$(LIBFT_DIR)/%.o, \
-					$(SOURCES_DIR)/test_%.c, \
-					$(LIBFT_OBJS)\
-				   )
+OBJECTS			 =	$(SOURCES:%.c=%.o)
+BONUS_OBJECTS	 =	$(BONUS_SOURCES:%.c=%.o)
 
-COMPATIBLE_SOURCES	 = test_ft_isalpha.c \
-					   test_ft_isdigit.c \
-					   test_ft_isalnum.c \
-					   test_ft_isascii.c \
-					   test_ft_isprint.c \
-					   test_ft_strlen.c \
-					   test_ft_memset.c \
-					   test_ft_bzero.c \
-					   test_ft_memcpy.c \
-					   test_ft_memmove.c \
-					   test_ft_strlcpy.c \
-					   test_ft_strlcat.c \
-					   test_ft_toupper.c \
-					   test_ft_tolower.c \
-					   test_ft_strchr.c \
-					   test_ft_strrchr.c \
-					   test_ft_strncmp.c \
-					   test_ft_memchr.c \
-					   test_ft_memcmp.c \
-					   test_ft_strnstr.c \
-					   test_ft_atoi.c \
-					   test_ft_calloc.c \
-					   test_ft_strdup.c \
-					   test_ft_substr.c \
-					   test_ft_strjoin.c \
-					   test_ft_strtrim.c \
-					   test_ft_split.c \
-					   test_ft_itoa.c \
-					   test_ft_strmapi.c \
-					   test_ft_striteri.c \
-					   test_ft_putchar_fd.c \
-					   test_ft_putstr_fd.c \
-					   test_ft_putendl_fd.c \
-					   test_ft_putnbr_fd.c \
-					   test_ft_lstnew.c \
-					   test_ft_lstadd_front.c \
-					   test_ft_lstsize.c \
-					   test_ft_lstlast.c \
-					   test_ft_lstadd_back.c \
-					   test_ft_lstdelone.c \
-					   test_ft_lstclear.c \
-					   test_ft_lstiter.c \
-					   test_ft_lstmap.c
-COMPATIBLE_SOURCES	:= $(addprefix $(SOURCES_DIR)/, $(COMPATIBLE_SOURCES))
-
-MAIN_SOURCE	 = $(SOURCES_DIR)/main.c
-UTILS_SOURCE = $(SOURCES_DIR)/utils.c
-SOURCES		 = $(MAIN_SOURCE) $(filter $(LIBFT_SOURCES), $(COMPATIBLE_SOURCES))
-MAIN_OBJECT	 = $(patsubst $(SOURCES_DIR)/%.c,$(BUILD_DIR)/%.o,$(MAIN_SOURCE))
-UTILS_OBJECT = $(patsubst $(SOURCES_DIR)/%.c,$(BUILD_DIR)/%.o,$(UTILS_SOURCE))
-OBJECTS		 = $(patsubst $(SOURCES_DIR)/%.c,$(BUILD_DIR)/%.o,$(SOURCES))
-DEPENDENCIES = $(OBJECTS:.o=.d)
-TESTS_OUT	 = $(patsubst $(SOURCES_DIR)/%.c, $(BUILD_DIR)/%.out, $(SOURCES))
-
-ARGS	 = $(filter $(LIBFT_SOURCES), $(COMPATIBLE_SOURCES))
-ARGS	:= $(ARGS:$(SOURCES_DIR)/%.c=$(BUILD_DIR)/%.out)
+DEPENDENCIES		 = $(OBJECTS:.o=.d)
+DEPENDENCIES_BONUS	 = $(BONUS_OBJECTS:.o=.d)
 
 CC			 = cc
 CFLAGS		 = -Wall -Wextra -Werror -Wpedantic
-EXTRAFLAGS	 = -ldl
 DEPFLAGS	 = -MMD -MF
-INCLUDES	 = -I./$(SOURCES_DIR) -I./$(LIBFT_DIR)
 
-MAKE		 = make
-MAKE_FLAGS	 = --no-print-directory -C
+AR		 = ar
+ARFLAGS	 = crs
 
-MKDIR		 = mkdir
-MKDIR_FLAGS	 = -p
+DEL = rm -rf
 
-RM = rm -fr
-
-ECHO		 = /usr/bin/echo -e
-COLOR_RESET	 = "\033[0m"
-COLOR_PURPLE = "\033[0;35m"
-MESSAGE		 = $(COLOR_PURPLE)"[ MAKE ]"$(COLOR_RESET)
-
-REMOVE_OUTPUT = > /dev/null
-
-.DEFAULT_GOAL = test
+.DEFAULT_GOAL = all
 
 ################################################################################
 
-all: $(NAME)
+all: mandatory bonus
 
 clean:
-	@$(ECHO) $(MESSAGE) "Cleaning libft intermediate files"
-	@$(MAKE) $(MAKE_FLAGS) $(LIBFT_DIR) clean $(REMOVE_OUTPUT)
-	@$(ECHO) $(MESSAGE) "Cleaning tests intermediate files"
-	@$(RM) $(BUILD_DIR)
+	$(RM) $(OBJECTS) $(BONUS_OBJECTS) $(DEPENDENCIES) $(DEPENDENCIES_BONUS)
 
-fclean:
-	@$(ECHO) $(MESSAGE) "Cleaning libft intermediate and output files"
-	@$(MAKE) $(MAKE_FLAGS) $(LIBFT_DIR) fclean $(REMOVE_OUTPUT)
-	@$(ECHO) $(MESSAGE) "Cleaning tests intermediate and output files"
-	@$(RM) $(BUILD_DIR) $(NAME)
+fclean: clean
+	$(RM) $(NAME)
 
-re: fclean test
+re: fclean all
 
 ################################################################################
 
-$(LIBFT): force
-	@if [ $(MAKELEVEL) -eq 0 ]; then \
-		$(ECHO) $(MESSAGE) "Building libft"; \
-		$(MAKE) $(MAKE_FLAGS) $(LIBFT_DIR) all $(REMOVE_OUTPUT); \
-	fi
+mandatory: $(OBJECTS)
 
-$(NAME): $(LIBFT) $(OBJECTS) $(UTILS_OBJECT) $(MAIN_OBJECT)
-	@if [ $(MAKELEVEL) -eq 0 ]; then \
-		$(ECHO) $(MESSAGE) "Building $(NAME)"; \
-		$(CC) $(CFLAGS) $(EXTRAFLAGS) $(INCLUDES) \
-			$(UTILS_OBJECT) $(MAIN_OBJECT) -o $(NAME); \
-	fi
+bonus: $(BONUS_OBJECTS)
 
-$(BUILD_DIR):
-	@$(MKDIR) $(MKDIR_FLAGS) $(BUILD_DIR)
+$(NAME): mandatory
 
-################################################################################
-
-$(BUILD_DIR)/%.o: $(SOURCES_DIR)/%.c $(UTILS_OBJECT) $(LIBFT) | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) -c $(INCLUDES) $< $(DEPFLAGS) $(BUILD_DIR)/$*.d -o $@
-	@$(CC) $(CFLAGS) $(EXTRAFLAGS) $(INCLUDES) \
-		$< $(LIBFT) $(UTILS_OBJECT) -o $(@:.o=.out)
-
-$(UTILS_OBJECT): $(UTILS_SOURCE) | $(BUILD_DIR)
-	@$(CC) $(CFLAGS) -c $(DEPFLAGS) $(BUILD_DIR)/utils.d $(INCLUDES) $< -o $@
-
-################################################################################
-
-test: $(NAME)
-	@$(MAKE) $(MAKE_FLAGS) . run
-	@$(ECHO) $(MESSAGE) "Done"
-
-run: $(NAME)
-	@$(ECHO) $(MESSAGE) "Running tests"
-	@./$(NAME) $(ARGS)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(DEPFLAGS) $(@:.o=.d)
+	$(AR) $(ARFLAGS) $(NAME) $@
 
 ################################################################################
 
 -include $(DEPENDENCIES)
 
-################################################################################
-
-force:
+-include $(DEPENDENCIES_BONUS)
 
 ################################################################################
 
 duck:
-	@$(ECHO) $(MESSAGE) "Furious quacking sound effect!"
+	@echo "Furious quacking noises!"
 
-################################################################################
-
-.PHONY: all clean fclean re test run force duck
+.PHONY: all clean fclean re mandatory bonus duck

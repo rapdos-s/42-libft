@@ -3,29 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:37:49 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/04/06 00:33:06 by coder            ###   ########.fr       */
+/*   Updated: 2024/05/01 21:18:08 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-// malloc()
+// System libraries ////////////////////////////////////////////////////////////
+
+// functions: malloc()
 # include <stdlib.h>
 
-// write() size_t
+// functions:  write()
+// types: size_t
 # include <unistd.h>
 
-# ifndef FT_RETURN_VALUES
+// Macros //////////////////////////////////////////////////////////////////////
+
+# ifndef FT_ISASCII_RETURN
 #  define FT_ISASCII_RETURN 1
+# endif // FT_ISASCII_RETURN
+
+# ifndef FT_ISALNUM_RETURN
 #  define FT_ISALNUM_RETURN 8
+# endif // FT_ISALNUM_RETURN
+
+# ifndef FT_ISALPHA_RETURN
 #  define FT_ISALPHA_RETURN 1024
+# endif // FT_ISALPHA_RETURN
+
+# ifndef FT_ISDIGIT_RETURN
 #  define FT_ISDIGIT_RETURN 2048
+# endif // FT_ISDIGIT_RETURN
+
+# ifndef FT_ISPRINT_RETURN
 #  define FT_ISPRINT_RETURN 16384
-# endif // FT_RETURN_VALUES
+# endif // FT_ISPRINT_RETURN
+
+// libft Functions ////////////////////////////////////////////////////////////
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
