@@ -10,102 +10,98 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+# Files ########################################################################
 
-SOURCES			 = ft_isalpha.c \
-				   ft_isdigit.c \
-				   ft_isalnum.c \
-				   ft_isascii.c \
-				   ft_isprint.c \
-				   ft_strlen.c \
-				   ft_memset.c \
-				   ft_bzero.c \
-				   ft_memcpy.c \
-				   ft_memmove.c \
-				   ft_strlcpy.c \
-				   ft_strlcat.c \
-				   ft_toupper.c \
-				   ft_tolower.c \
-				   ft_strchr.c \
-				   ft_strrchr.c \
-				   ft_strncmp.c \
-				   ft_memchr.c \
-				   ft_memcmp.c \
-				   ft_strnstr.c \
-				   ft_atoi.c \
-				   ft_calloc.c \
-				   ft_strdup.c \
-				   ft_substr.c \
-				   ft_strjoin.c \
-				   ft_strtrim.c \
-				   ft_split.c \
-				   ft_itoa.c \
-				   ft_strmapi.c \
-				   ft_striteri.c \
-				   ft_putchar_fd.c \
-				   ft_putstr_fd.c \
-				   ft_putendl_fd.c \
-				   ft_putnbr_fd.c
-BONUS_SOURCES	 = ft_lstnew.c \
-				   ft_lstadd_front.c \
-				   ft_lstsize.c \
-				   ft_lstlast.c \
-				   ft_lstadd_back.c \
-				   ft_lstdelone.c \
-				   ft_lstclear.c \
-				   ft_lstiter.c \
-				   ft_lstmap.c
+NAME       = libft.a
 
-OBJECTS			 =	$(SOURCES:%.c=%.o)
-BONUS_OBJECTS	 =	$(BONUS_SOURCES:%.c=%.o)
+HDR        = libft.h
+HDR_B      = libft_bonus.h
 
-DEPENDENCIES		 = $(OBJECTS:.o=.d)
-DEPENDENCIES_BONUS	 = $(BONUS_OBJECTS:.o=.d)
+SRC        = ft_isalpha.c
+SRC       += ft_isdigit.c
+SRC       += ft_isalnum.c
+SRC       += ft_isascii.c
+SRC       += ft_isprint.c
+SRC       += ft_strlen.c
+SRC       += ft_memset.c
+SRC       += ft_bzero.c
+SRC       += ft_memcpy.c
+SRC       += ft_memmove.c
+SRC       += ft_strlcpy.c
+SRC       += ft_strlcat.c
+SRC       += ft_toupper.c
+SRC       += ft_tolower.c
+SRC       += ft_strchr.c
+SRC       += ft_strrchr.c
+SRC       += ft_strncmp.c
+SRC       += ft_memchr.c
+SRC       += ft_memcmp.c
+SRC       += ft_strnstr.c
+SRC       += ft_atoi.c
+SRC       += ft_calloc.c
+SRC       += ft_strdup.c
+SRC       += ft_substr.c
+SRC       += ft_strjoin.c
+SRC       += ft_strtrim.c
+SRC       += ft_split.c
+SRC       += ft_itoa.c
+SRC       += ft_strmapi.c
+SRC       += ft_striteri.c
+SRC       += ft_putchar_fd.c
+SRC       += ft_putstr_fd.c
+SRC       += ft_putendl_fd.c
+SRC       += ft_putnbr_fd.c
 
-CC			 = cc
-CFLAGS		 = -Wall -Wextra -Werror -Wpedantic
-DEPFLAGS	 = -MMD -MF
+SRC_B      = ft_lstnew_bonus.c
+SRC_B     += ft_lstadd_front_bonus.c
+SRC_B     += ft_lstsize_bonus.c
+SRC_B     += ft_lstlast_bonus.c
+SRC_B     += ft_lstadd_back_bonus.c
+SRC_B     += ft_lstdelone_bonus.c
+SRC_B     += ft_lstclear_bonus.c
+SRC_B     += ft_lstiter_bonus.c
+SRC_B     += ft_lstmap_bonus.c
 
-AR		 = ar
-ARFLAGS	 = crs
+OBJ        = $(SRC:%.c=%.o)
+OBJ_B      = $(SRC_B:%.c=%.o)
 
-DEL = rm -rf
+# Commands #####################################################################
+
+CC         = cc
+CFLAGS     = -Wall -Wextra -Werror
+
+AR         = ar -crs
+DEL        = rm -rf
+
+# Special Targets ##############################################################
 
 .DEFAULT_GOAL = all
+.PHONY: all clean fclean re mandatory bonus
 
 ################################################################################
 
-all: mandatory bonus
+all: $(NAME)
+
+$(NAME): mandatory bonus
+
+mandatory: $(OBJ)
+
+bonus: $(OBJ_B)
 
 clean:
-	$(RM) $(OBJECTS) $(BONUS_OBJECTS) $(DEPENDENCIES) $(DEPENDENCIES_BONUS)
+	$(RM) $(OBJ) $(OBJ_B)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-################################################################################
+# Pattern Rules ################################################################
 
-mandatory: $(OBJECTS)
+%.o: %.c $(HDR)
+	$(CC) $(CFLAGS) -c -o $(@) $(<)
+	$(AR) $(NAME) $(@)
 
-bonus: $(BONUS_OBJECTS)
-
-$(NAME): mandatory
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(DEPFLAGS) $(@:.o=.d)
-	$(AR) $(ARFLAGS) $(NAME) $@
-
-################################################################################
-
--include $(DEPENDENCIES)
-
--include $(DEPENDENCIES_BONUS)
-
-################################################################################
-
-duck:
-	@echo "Furious quacking noises!"
-
-.PHONY: all clean fclean re mandatory bonus duck
+%_bonus.o: %_bonus.c $(HDR_B)
+	$(CC) $(CFLAGS) -c -o $(@) $(<)
+	$(AR) $(NAME) $(@)
