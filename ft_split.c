@@ -6,7 +6,7 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:22 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/05/13 17:51:38 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:22:16 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	str_splitter(char ***m, char const *s, char c)
 	{
 		(*m)[0] = (char *)malloc(sizeof(char));
 		if ((*m)[0] == NULL)
-			return;
+			return ;
 		(*m)[0][0] = '\0';
 	}
 	while (s[start] != '\0')
@@ -95,7 +95,7 @@ static void	str_splitter(char ***m, char const *s, char c)
 		{
 			(*m)[i] = (char *)malloc((len + 1) * sizeof(char));
 			if ((*m)[i] == NULL)
-				return;
+				return ;
 			j = 0;
 			while (j < len)
 			{
