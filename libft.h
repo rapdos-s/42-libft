@@ -6,7 +6,7 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:37:49 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/05/01 21:18:08 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:25:54 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # endif // FT_ISALNUM_RETURN
 
 # ifndef FT_ISALPHA_RETURN
-#  define FT_ISALPHA_RETURN 1024
+#  define FT_ISALPHA_RETURN 10
 # endif // FT_ISALPHA_RETURN
 
 # ifndef FT_ISDIGIT_RETURN
