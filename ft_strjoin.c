@@ -6,7 +6,7 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:18 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/05/13 17:50:16 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:53:38 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (str == NULL)
 		return (NULL);
 	str[len_s1 + len_s2] = '\0';
-	while(len_s2--)
+	while (len_s2--)
 		str[len_s1 + len_s2] = s2[len_s2];
-	while(len_s1--)
+	while (len_s1--)
 		str[len_s1] = s1[len_s1];
 	return (str);
 }
