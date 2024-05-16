@@ -78,7 +78,7 @@ DEL        = rm -rf
 .DEFAULT_GOAL = all
 .PHONY: all clean fclean re mandatory bonus
 
-################################################################################
+# Basic Rules ##################################################################
 
 all: $(NAME)
 
@@ -89,10 +89,10 @@ mandatory: $(OBJ)
 bonus: $(OBJ_B)
 
 clean:
-	$(RM) $(OBJ) $(OBJ_B)
+	$(DEL) $(OBJ) $(OBJ_B)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(DEL) $(NAME)
 
 re: fclean all
 
