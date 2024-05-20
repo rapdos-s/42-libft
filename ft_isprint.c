@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:46 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/27 22:03:33 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:05:34 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int	ft_isprint(int c)
 {
-	if (c >= 32 && c <= 126)
-		return (FT_ISPRINT_RETURN);
-	return (0);
+	return (((unsigned)(c - 32) <= 94) << FT_ISPRINT_RETURN_LEFT_SHIFT);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:54 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/27 21:37:30 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:05:34 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int	ft_isdigit(int c)
 {
-	if (c >= '0' && c <= '9')
-		return (FT_ISDIGIT_RETURN);
-	return (0);
+	return (((unsigned)(c - '0') < 10) << FT_ISDIGIT_RETURN_LEFT_SHIFT);
 }

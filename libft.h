@@ -6,7 +6,7 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:37:49 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/05/13 18:25:54 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:05:34 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,31 @@
 // functions: malloc()
 # include <stdlib.h>
 
-// functions:  write()
+// functions: write()
 // types: size_t
 # include <unistd.h>
 
 // Macros //////////////////////////////////////////////////////////////////////
 
-# ifndef FT_ISASCII_RETURN
-#  define FT_ISASCII_RETURN 1
-# endif // FT_ISASCII_RETURN
+# ifndef FT_ISASCII_RETURN_LEFT_SHIFT
+#  define FT_ISASCII_RETURN_LEFT_SHIFT 0
+# endif // FT_ISASCII_RETURN_LEFT_SHIFT
 
-# ifndef FT_ISALNUM_RETURN
-#  define FT_ISALNUM_RETURN 8
-# endif // FT_ISALNUM_RETURN
+# ifndef FT_ISALNUM_RETURN_LEFT_SHIFT
+#  define FT_ISALNUM_RETURN_LEFT_SHIFT 3
+# endif // FT_ISALNUM_RETURN_LEFT_SHIFT
 
-# ifndef FT_ISALPHA_RETURN
-#  define FT_ISALPHA_RETURN 10
-# endif // FT_ISALPHA_RETURN
+# ifndef FT_ISALPHA_RETURN_LEFT_SHIFT
+#  define FT_ISALPHA_RETURN_LEFT_SHIFT 10
+# endif // FT_ISALPHA_RETURN_LEFT_SHIFT
 
-# ifndef FT_ISDIGIT_RETURN
-#  define FT_ISDIGIT_RETURN 2048
-# endif // FT_ISDIGIT_RETURN
+# ifndef FT_ISDIGIT_RETURN_LEFT_SHIFT
+#  define FT_ISDIGIT_RETURN_LEFT_SHIFT 11
+# endif // FT_ISDIGIT_RETURN_LEFT_SHIFT
 
-# ifndef FT_ISPRINT_RETURN
-#  define FT_ISPRINT_RETURN 16384
-# endif // FT_ISPRINT_RETURN
+# ifndef FT_ISPRINT_RETURN_LEFT_SHIFT
+#  define FT_ISPRINT_RETURN_LEFT_SHIFT 14
+# endif // FT_ISPRINT_RETURN_LEFT_SHIFT
 
 // libft Functions ////////////////////////////////////////////////////////////
 
