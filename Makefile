@@ -3,80 +3,80 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rapdos-s <rapdos-s@student.42.fr>          +#+  +:+       +#+         #
+#    By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 20:57:09 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/03/27 20:57:09 by rapdos-s         ###   ########.fr        #
+#    Updated: 2024/05/20 17:48:35 by rapdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Files ########################################################################
 
-NAME       = libft.a
+NAME                 = libft.a
 
-HDR        = libft.h
-HDR_B      = libft_bonus.h
+headers              = libft.h
+headers_bonus        = libft_bonus.h
 
-SRC        = ft_isalpha.c
-SRC       += ft_isdigit.c
-SRC       += ft_isalnum.c
-SRC       += ft_isascii.c
-SRC       += ft_isprint.c
-SRC       += ft_strlen.c
-SRC       += ft_memset.c
-SRC       += ft_bzero.c
-SRC       += ft_memcpy.c
-SRC       += ft_memmove.c
-SRC       += ft_strlcpy.c
-SRC       += ft_strlcat.c
-SRC       += ft_toupper.c
-SRC       += ft_tolower.c
-SRC       += ft_strchr.c
-SRC       += ft_strrchr.c
-SRC       += ft_strncmp.c
-SRC       += ft_memchr.c
-SRC       += ft_memcmp.c
-SRC       += ft_strnstr.c
-SRC       += ft_atoi.c
-SRC       += ft_calloc.c
-SRC       += ft_strdup.c
-SRC       += ft_substr.c
-SRC       += ft_strjoin.c
-SRC       += ft_strtrim.c
-SRC       += ft_split.c
-SRC       += ft_itoa.c
-SRC       += ft_strmapi.c
-SRC       += ft_striteri.c
-SRC       += ft_putchar_fd.c
-SRC       += ft_putstr_fd.c
-SRC       += ft_putendl_fd.c
-SRC       += ft_putnbr_fd.c
+sources              = ft_isalpha.c
+sources             += ft_isdigit.c
+sources             += ft_isalnum.c
+sources             += ft_isascii.c
+sources             += ft_isprint.c
+sources             += ft_strlen.c
+sources             += ft_memset.c
+sources             += ft_bzero.c
+sources             += ft_memcpy.c
+sources             += ft_memmove.c
+sources             += ft_strlcpy.c
+sources             += ft_strlcat.c
+sources             += ft_toupper.c
+sources             += ft_tolower.c
+sources             += ft_strchr.c
+sources             += ft_strrchr.c
+sources             += ft_strncmp.c
+sources             += ft_memchr.c
+sources             += ft_memcmp.c
+sources             += ft_strnstr.c
+sources             += ft_atoi.c
+sources             += ft_calloc.c
+sources             += ft_strdup.c
+sources             += ft_substr.c
+sources             += ft_strjoin.c
+sources             += ft_strtrim.c
+sources             += ft_split.c
+sources             += ft_itoa.c
+sources             += ft_strmapi.c
+sources             += ft_striteri.c
+sources             += ft_putchar_fd.c
+sources             += ft_putstr_fd.c
+sources             += ft_putendl_fd.c
+sources             += ft_putnbr_fd.c
 
-SRC_B      = ft_lstnew_bonus.c
-SRC_B     += ft_lstadd_front_bonus.c
-SRC_B     += ft_lstsize_bonus.c
-SRC_B     += ft_lstlast_bonus.c
-SRC_B     += ft_lstadd_back_bonus.c
-SRC_B     += ft_lstdelone_bonus.c
-SRC_B     += ft_lstclear_bonus.c
-SRC_B     += ft_lstiter_bonus.c
-SRC_B     += ft_lstmap_bonus.c
+sources_bonus        = ft_lstnew_bonus.c
+sources_bonus       += ft_lstadd_front_bonus.c
+sources_bonus       += ft_lstsize_bonus.c
+sources_bonus       += ft_lstlast_bonus.c
+sources_bonus       += ft_lstadd_back_bonus.c
+sources_bonus       += ft_lstdelone_bonus.c
+sources_bonus       += ft_lstclear_bonus.c
+sources_bonus       += ft_lstiter_bonus.c
+sources_bonus       += ft_lstmap_bonus.c
 
-OBJ        = $(SRC:%.c=%.o)
-OBJ_B      = $(SRC_B:%.c=%.o)
+objects              = $(sources:%.c=%.o)
+objects_bonus        = $(sources_bonus:%.c=%.o)
 
 # Commands #####################################################################
 
-CC         = cc
-CFLAGS     = -Wall -Wextra -Werror
+CC                   = cc
+CFLAGS               = -Wall -Wextra -Werror
 
-AR         = ar -crs
-DEL        = rm -rf
+ar                   = ar -crs
+remove               = rm --force --recursive
 
 # Special Targets ##############################################################
 
 .DEFAULT_GOAL = all
-.PHONY: all clean fclean re mandatory bonus
+.PHONY: all mandatory bonus clean fclean re
 
 # Basic Rules ##################################################################
 
@@ -84,24 +84,24 @@ all: $(NAME)
 
 $(NAME): mandatory bonus
 
-mandatory: $(OBJ)
+mandatory: $(objects)
 
-bonus: $(OBJ_B)
+bonus: $(objects_bonus)
 
 clean:
-	$(DEL) $(OBJ) $(OBJ_B)
+	$(remove) $(objects) $(objects_bonus)
 
 fclean: clean
-	$(DEL) $(NAME)
+	$(remove) $(NAME)
 
 re: fclean all
 
 # Pattern Rules ################################################################
 
-%.o: %.c $(HDR)
+%.o: %.c $(headers)
 	$(CC) $(CFLAGS) -c -o $(@) $(<)
-	$(AR) $(NAME) $(@)
+	$(ar) $(NAME) $(@)
 
-%_bonus.o: %_bonus.c $(HDR_B)
+%_bonus.o: %_bonus.c $(headers_bonus)
 	$(CC) $(CFLAGS) -c -o $(@) $(<)
-	$(AR) $(NAME) $(@)
+	$(ar) $(NAME) $(@)
