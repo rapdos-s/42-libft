@@ -6,7 +6,7 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:37:49 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/05/20 18:05:34 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:28:26 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,56 @@
 
 // libft Functions ////////////////////////////////////////////////////////////
 
+/**
+ * @brief Check if the character is an alphabetic character. The return value
+ * does not overlap with the bit of return value of ft_isdigit, ft_isalnum,
+ * ft_isascii and ft_isprint.
+ * 
+ * @param c The character to be checked.
+ * @return int 1024 if the character is an alphabetic character, 0 otherwise.
+ */
 int		ft_isalpha(int c);
+
+/**
+ * @brief Check if the character is a digit. The return value does not overlap
+ * with the bit of return value of ft_isalpha, ft_isalnum, ft_isascii and
+ * ft_isprint.
+ * 
+ * @param c The character to be checked.
+ * @return int 2048 if the character is a digit, 0 otherwise.
+ */
 int		ft_isdigit(int c);
+
+/**
+ * @brief Check if the character is an alphanumeric character. The return value
+ * does not overlap with the bit of return value of ft_isalpha, ft_isdigit,
+ * ft_isascii and ft_isprint.
+ * 
+ * @param c The character to be checked.
+ * @return int 8 if the character is an alphanumeric character, 0 otherwise.
+ */
 int		ft_isalnum(int c);
+
+/**
+ * @brief Check if the character is an ASCII character. The return value does
+ * not overlap with the bit of return value of ft_isalpha, ft_isdigit,
+ * ft_isalnum and ft_isprint.
+ * 
+ * @param c The character to be checked.
+ * @return int 1 if the character is an ASCII character, 0 otherwise.
+ */
 int		ft_isascii(int c);
+
+/**
+ * @brief Check if the character is a printable character. The return value does
+ * not overlap with the bit of return value of ft_isalpha, ft_isdigit,
+ * ft_isalnum and ft_isascii.
+ * 
+ * @param c The character to be checked.
+ * @return int 16384 if the character is a printable character, 0 otherwise.
+ */
 int		ft_isprint(int c);
+
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
