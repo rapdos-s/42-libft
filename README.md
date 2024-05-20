@@ -46,20 +46,22 @@ Hello, World!
 
 ## Detalhando um pouco mais as funções
 
-### ft_isalpha, ft_isdigit, ft_isalnum, ft_isascii e ft_isprint
+<details>
+  </br>
+  <summary>ft_isalpha, ft_isdigit, ft_isalnum, ft_isascii e ft_isprint</summary>
 
 Essas funções são responsáveis por verificar se um caractere (no caso, um int) possui determinada característica.
 
 Caso negativo, essas funções retornam 0, caso positivo, retornam um valor não zero, sendo que cada função possui um retorno próprio(o que pode mudar dependendo de qual biblioteca você está usando, aqui estou me baseando na LibC que encontrei nos computadores da 42 São Paulo).
 
 Retorno de cada função:
-
+```
 ft_isalpha(): 1024
 ft_isdigit(): 2048
 ft_isalnum(): 8
 ft_isascii(): 1
 ft_isprint(): 16384
-
+```
 A ideia desses retornos é tornar possível o armazenamento dos resultados de todos os testes em uma única variável int, o que é bem útil para sistemas com memória limitada e.
 
 Abaixo um exemplo de código para ver como os valores de retorno são armazenados:
@@ -143,3 +145,4 @@ Obs.1: Note que o segundo teste não altera o valor
 Obs.2: Nem todos os bits são usados pois a libft não possui
        funções de checagem de caracteres de libC.
 ```
+</details>
