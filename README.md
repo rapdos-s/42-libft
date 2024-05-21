@@ -2,16 +2,20 @@
 Minha versão da reimplementação de funções básicas da linguagem C.
 
 O que precisa?
-cc
-make
-ar
-rm
+
+`cc`: Compilador, no pdf é requisito que ele seja utilizado no `Makefile`
+
+`make`: Necessário para usar os scripts do `Makefile`
+
+`ar`: Agrupador de arquivos que vai juntar os objetos gerados pelo compilador `cc` em um único arquivo `.a`
+
+`rm`: Usado para remover os arquivos secundários e o arquivo final da biblioteca.
 
 Como usar:
 
 Escreva um teste, exemplo:
-`main.c`
 
+`main.c`
 ```c
 #include "libft.h"
 
@@ -40,7 +44,7 @@ Para executar
 ```
 
 A saída esperada é essa
-```sh
+```
 Hello, World!
 ```
 
@@ -52,7 +56,7 @@ Hello, World!
 
 Essas funções são responsáveis por verificar se um caractere (no caso, um int) possui determinada característica.
 
-Caso negativo, essas funções retornam 0, caso positivo, retornam um valor não zero, sendo que cada função possui um retorno próprio(o que pode mudar dependendo de qual biblioteca você está usando, aqui estou me baseando na LibC que encontrei nos computadores da 42 São Paulo).
+Caso negativo, essas funções retornam 0, caso positivo, retornam um valor não zero, sendo que cada função possui um retorno próprio (o que pode mudar dependendo de qual biblioteca você está usando, aqui estou me baseando na LibC que encontrei nos computadores da 42 São Paulo).
 
 Retorno de cada função:
 ```
@@ -62,7 +66,7 @@ ft_isalnum(): 8
 ft_isascii(): 1
 ft_isprint(): 16384
 ```
-A ideia desses retornos é tornar possível o armazenamento dos resultados de todos os testes em uma única variável int, o que é bem útil para sistemas com memória limitada e.
+A ideia desses retornos é tornar possível o armazenamento dos resultados de todos os testes em uma única variável int, o que é bem útil para sistemas com memória limitada.
 
 Abaixo um exemplo de código para ver como os valores de retorno são armazenados:
 
@@ -91,7 +95,7 @@ int main(void)
 	printf("% 6d = ft_isascii('%c')\n", ft_isascii(alpha), (char)alpha);
 	printf("% 6d = ft_isprint('%c')\n", ft_isprint(alpha), (char)alpha);
 	printf("\n");
-	printf("Verificando todas as funções com '%c' e guardando o ", alpha);
+	printf("Verificando todas as funções com '%c' e guardando o \n", alpha);
 	printf("retorno em uma única variável int.\n");
 	return_value = 0;
 	return_value = ft_isalpha(alpha);
@@ -107,7 +111,7 @@ int main(void)
 	printf("\n");
 	printf("Obs.1: Note que o segundo teste não altera o valor\n");
 	printf("Obs.2: Nem todos os bits são usados pois a libft não possui\n");
-	printf("       funções de checagem de caracteres de libC.\n");
+	printf("       todas as funções de checagem de caracteres de libC.\n");
 }
 
 static void	print_return_value(int return_value)
@@ -134,7 +138,8 @@ A saída esperada:
      1 = ft_isascii('a')
  16384 = ft_isprint('a')
 
-Verificando todas as funções com 'a' e guardando o retorno em uma única variável int.    
+Verificando todas as funções com 'a' e guardando o 
+retorno em uma única variável int.
 return_value =   1024 / 0b0000010000000000
 return_value =   1024 / 0b0000010000000000
 return_value =   1032 / 0b0000010000001000
@@ -143,6 +148,6 @@ return_value =  17417 / 0b0100010000001001
 
 Obs.1: Note que o segundo teste não altera o valor
 Obs.2: Nem todos os bits são usados pois a libft não possui
-       funções de checagem de caracteres de libC.
+       todas as funções de checagem de caracteres de libC.
 ```
 </details>
