@@ -12,7 +12,8 @@
 
 #include "libft.h"
 
-int ft_isalpha(int c) {
+int ft_isalpha(int c)
+{
 	return (((unsigned)((c | 0b00100000) - 'a') < 26)
 			<< FT_ISALPHA_RETURN_LEFT_SHIFT);
 }

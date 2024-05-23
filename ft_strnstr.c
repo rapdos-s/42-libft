@@ -12,7 +12,8 @@
 
 #include "libft.h"
 
-char *ft_strnstr(char const *big, char const *little, size_t len) {
+char *ft_strnstr(char const *big, char const *little, size_t len)
+{
 	(void)big;
 	(void)little;
 	(void)len;

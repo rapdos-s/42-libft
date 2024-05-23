@@ -12,6 +12,7 @@
 
 #include "libft.h"
 
-int ft_isdigit(int c) {
+int ft_isdigit(int c)
+{
 	return (((unsigned)(c - '0') < 10) << FT_ISDIGIT_RETURN_LEFT_SHIFT);
 }

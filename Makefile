@@ -6,7 +6,7 @@
 #    By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 20:57:09 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/05/23 18:31:28 by rapdos-s         ###   ########.fr        #
+#    Updated: 2024/05/23 18:38:55 by rapdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,13 +108,5 @@ re: fclean all
 
 # Code Format ##################################################################
 
-c_fmt                = clang-format
-c_ident_width        = IndentWidth: 4
-c_use_tabs           = UseTab: Always
-c_tab_width          = TabWidth: 4
-c_fmt_flags          = -i -style="{$(c_ident_width), $(c_use_tabs), \
-                       $(c_tab_width)}"
-
 fmt:
-	$(c_fmt) $(c_fmt_flags) $(sources) $(sources_bonus) $(headers) \
-	$(headers_bonus)
+	clang-format -i -style="{BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, UseTab: Always, AlignConsecutiveDeclarations: true, AlignConsecutiveAssignments: true, AlignTrailingComments: true, BreakBeforeBraces: Allman}" *.c *.h

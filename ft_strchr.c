@@ -12,7 +12,8 @@
 
 #include "libft.h"
 
-char *ft_strchr(char const *s, int c) {
+char *ft_strchr(char const *s, int c)
+{
 	(void)s;
 	(void)c;
 	return (NULL);

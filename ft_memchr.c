@@ -12,7 +12,8 @@
 
 #include "libft.h"
 
-void *ft_memchr(void const *s, int c, size_t n) {
+void *ft_memchr(void const *s, int c, size_t n)
+{
 	(void)s;
 	(void)c;
 	(void)n;

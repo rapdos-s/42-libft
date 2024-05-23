@@ -12,7 +12,8 @@
 
 #include "libft.h"
 
-size_t ft_strlen(char const *s) {
+size_t ft_strlen(char const *s)
+{
 	(void)s;
 	return (0);
 }

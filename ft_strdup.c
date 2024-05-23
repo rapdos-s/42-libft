@@ -12,7 +12,8 @@
 
 #include "libft.h"
 
-char *ft_strdup(char const *s) {
+char *ft_strdup(char const *s)
+{
 	(void)s;
 	return (NULL);
 }

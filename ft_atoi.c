@@ -6,13 +6,14 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:28:40 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/05/23 23:20:46 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:37:25 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_atoi(char const *nptr) {
+int ft_atoi(char const *nptr)
+{
 	(void)nptr;
 	return (0);
 }
