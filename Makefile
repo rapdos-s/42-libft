@@ -6,7 +6,7 @@
 #    By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 20:57:09 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/05/20 17:48:35 by rapdos-s         ###   ########.fr        #
+#    Updated: 2024/05/23 23:27:46 by rapdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,3 +105,16 @@ re: fclean all
 %_bonus.o: %_bonus.c $(headers_bonus)
 	$(CC) $(CFLAGS) -c -o $(@) $(<)
 	$(ar) $(NAME) $(@)
+
+# Code Format ##################################################################
+
+c_fmt                = clang-format
+c_ident_width        = IndentWidth: 4
+c_use_tabs           = UseTab: Always
+c_tab_width          = TabWidth: 4
+c_fmt_flags          = -i -style="{$(c_ident_width), $(c_use_tabs), \
+                       $(c_tab_width)}"
+
+fmt:
+	$(c_fmt) $(c_fmt_flags) $(sources) $(sources_bonus) $(headers) \
+	$(headers_bonus)

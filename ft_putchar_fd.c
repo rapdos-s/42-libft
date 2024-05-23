@@ -6,7 +6,7 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:28 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/04/01 17:48:05 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/23 23:14:08 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	(void)c;
+	(void)fd;
 }

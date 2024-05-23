@@ -6,20 +6,14 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:14 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/03/28 09:41:42 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/23 23:20:46 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char const *s)
 {
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	(void)s;
+	return (0);
 }
