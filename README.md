@@ -52,6 +52,10 @@ Minha versão da reimplementação de funções básicas da linguagem C.
 - [ ] ft_lstiter_bonus
 - [ ] ft_lstmap_bonus
 
+**Outros pontos**
+- [ ] norminette
+- [ ] NULL tests
+- [ ] Tripouille's tester
 
 ### O que precisa?
 
