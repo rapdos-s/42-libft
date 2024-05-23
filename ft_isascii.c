@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-int	ft_isascii(int c)
-{
+int ft_isascii(int c) {
 	return ((!(c & ~127)) << FT_ISASCII_RETURN_LEFT_SHIFT);
 }

@@ -12,8 +12,7 @@
 
 #include "libft.h"
 
-int	ft_atoi(char const *nptr)
-{
+int ft_atoi(char const *nptr) {
 	(void)nptr;
 	return (0);
 }

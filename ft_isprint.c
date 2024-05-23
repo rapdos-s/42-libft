@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-int	ft_isprint(int c)
-{
+int ft_isprint(int c) {
 	return (((unsigned)(c - 32) <= 94) << FT_ISPRINT_RETURN_LEFT_SHIFT);
 }

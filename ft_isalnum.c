@@ -12,8 +12,8 @@
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
-{
-	return (((unsigned)((c | 0b00100000) - 'a') < 26 || \
-		((unsigned)(c - '0') < 10)) << FT_ISALNUM_RETURN_LEFT_SHIFT);
+int ft_isalnum(int c) {
+	return (
+		((unsigned)((c | 0b00100000) - 'a') < 26 || ((unsigned)(c - '0') < 10))
+		<< FT_ISALNUM_RETURN_LEFT_SHIFT);
 }
