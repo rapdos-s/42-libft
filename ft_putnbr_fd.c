@@ -6,13 +6,13 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:26 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/05/23 23:13:40 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/05/24 00:02:25 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	(void)n;
 	(void)fd;

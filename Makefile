@@ -6,7 +6,7 @@
 #    By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 20:57:09 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/05/23 18:38:55 by rapdos-s         ###   ########.fr        #
+#    Updated: 2024/05/24 00:07:53 by rapdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,8 +105,3 @@ re: fclean all
 %_bonus.o: %_bonus.c $(headers_bonus)
 	$(CC) $(CFLAGS) -c -o $(@) $(<)
 	$(ar) $(NAME) $(@)
-
-# Code Format ##################################################################
-
-fmt:
-	clang-format -i -style="{BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, UseTab: Always, AlignConsecutiveDeclarations: true, AlignConsecutiveAssignments: true, AlignTrailingComments: true, BreakBeforeBraces: Allman}" *.c *.h
