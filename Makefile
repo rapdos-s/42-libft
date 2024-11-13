@@ -6,7 +6,7 @@
 #    By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 00:27:22 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/11/13 02:18:10 by rapdos-s         ###   ########.fr        #
+#    Updated: 2024/11/13 04:19:06 by rapdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,9 @@ NAME                 = libft.a
 
 headers              = libft.h
 headers_bonus        = libft_bonus.h
+
+compilled_headers    = $(headers:%.h=%.h.gch)
+compilled_headers   += $(headers_bonus:%.h=%.h.gch)
 
 sources              = ft_isalpha.c
 # sources             += ft_isdigit.c
@@ -66,9 +69,9 @@ objects              = $(sources:%.c=%.o)
 objects_bonus        = $(sources_bonus:%.c=%.o)
 
 dependencies         = $(sources:%.c=%.d)
-dependencies_bonus   = $(sources_bonus:%.c=%.d)
+dependencies        += $(sources_bonus:%.c=%.d)
 
-# colors #######################################################################
+# Colors #######################################################################
 
 gray                 = \033[0;30m
 red                  = \033[0;31m
@@ -95,7 +98,6 @@ depflags             = -MMD -MF $(@:%.o=%.d)
 # Special Targets ##############################################################
 
 -include $(dependencies)
--include $(dependencies_bonus)
 .DEFAULT_GOAL = all
 .PHONY: all clean fclean re
 .PHONY: mandatory bonus duck
@@ -108,12 +110,6 @@ all:
 	@$(make) bonus
 	@$(echo) "make all done."
 
-$(NAME):
-	@$(echo) "make $(NAME)"
-	@$(make) mandatory
-	@$(make) bonus
-	@$(echo) "make $(NAME) done."
-
 clean:
 	@$(echo) "make clean"
 	@$(echo) "removing object files..."
@@ -122,13 +118,14 @@ clean:
 	@$(remove) $(objects_bonus)
 	@$(echo) "removing dependency files..."
 	@$(remove) $(dependencies)
-	@$(echo) "removing bonus dependency files..."
-	@$(remove) $(dependencies_bonus)
+	@$(echo) "removing compilled headers files..."
+	@$(remove) $(compilled_headers)
 	@$(echo) "make clean done."
 
 fclean:
 	@$(echo) "make fclean"
 	@$(make) clean
+	@$(echo) "removing $(NAME) file..."
 	@$(remove) $(NAME)
 	@$(echo) "make fclean done."
 
@@ -140,11 +137,25 @@ re:
 
 # Compilation Rules ############################################################
 
+$(NAME):
+	@$(echo) "make $(NAME)"
+	@$(make) mandatory
+	@$(make) bonus
+	@$(echo) "make $(NAME) done."
+
 mandatory: $(objects)
 
 bonus: $(objects_bonus)
 
-%.o: %.c
+%.o: %.c $(headers)
+	@$(echo) "Compiling $(<)..."
+	@$(CC) -c $(CFLAGS) $(depflags) $(<) -o $(@)
+	@$(echo) "$(<) compiled."
+	@$(echo) "Linking $(@)..."
+	@$(ar) $(NAME) $(@)
+	@$(echo) "$(@) linked."
+
+%.o: %.c $(headers_bonus)
 	@$(echo) "Compiling $(<)..."
 	@$(CC) -c $(CFLAGS) $(depflags) $(<) -o $(@)
 	@$(echo) "$(<) compiled."
