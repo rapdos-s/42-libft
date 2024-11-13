@@ -6,7 +6,7 @@
 /*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 02:24:13 by rapdos-s          #+#    #+#             */
-/*   Updated: 2024/11/13 02:24:14 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2024/11/13 05:36:47 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define FT_ISALPHA_RETURN 1024
 # define FT_ISDIGIT_RETURN 2048
 # define FT_ISPRINT_RETURN 16384
+
 ///
 /// The members of the t_list struct are:
 ///

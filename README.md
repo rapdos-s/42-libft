@@ -5,11 +5,11 @@ Minha versão da reimplementação de algumas funções básicas da linguagem C.
 
 **Mandatório**
 
-- [ ] ft_isalpha
-- [ ] ft_isdigit
-- [ ] ft_isalnum
-- [ ] ft_isascii
-- [ ] ft_isprint
+- [x] ft_isalpha
+- [x] ft_isdigit
+- [x] ft_isalnum
+- [x] ft_isascii
+- [x] ft_isprint
 - [ ] ft_strlen
 - [ ] ft_memset
 - [ ] ft_bzero
