@@ -6,7 +6,7 @@
 #    By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 00:27:22 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/11/13 04:19:06 by rapdos-s         ###   ########.fr        #
+#    Updated: 2024/11/13 04:37:28 by rapdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,8 @@ magenta              = \033[0;35m
 cyan                 = \033[0;36m
 reset                = \033[0m
 main_color           = $(cyan)
-tag                  = "[ $(main_color)$(NAME)$(reset) ]"
+tag_name             = Libft
+tag                  = "[ $(main_color)$(tag_name)$(reset) ]"
 
 # Commands #####################################################################
 

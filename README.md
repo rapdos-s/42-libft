@@ -1,15 +1,15 @@
 # 42-libft
-Minha versão da reimplementação de funções básicas da linguagem C.
+Minha versão da reimplementação de algumas funções básicas da linguagem C.
 
 ### Como está o andamento desse repositório?
 
 **Mandatório**
 
-- [x] ~~ft_isalpha~~
-- [x] ~~ft_isdigit~~
-- [x] ~~ft_isalnum~~
-- [x] ~~ft_isascii~~
-- [x] ~~ft_isprint~~
+- [ ] ft_isalpha
+- [ ] ft_isdigit
+- [ ] ft_isalnum
+- [ ] ft_isascii
+- [ ] ft_isprint
 - [ ] ft_strlen
 - [ ] ft_memset
 - [ ] ft_bzero
@@ -52,20 +52,18 @@ Minha versão da reimplementação de funções básicas da linguagem C.
 - [ ] ft_lstiter_bonus
 - [ ] ft_lstmap_bonus
 
-**Outros pontos**
+**Outros Pontos**
+
+- [x] ~~Makefile~~
 - [ ] norminette
-- [ ] NULL tests
-- [ ] Tripouille's tester
 
 ### O que precisa?
 
-`cc`: Compilador, no pdf é requisito que ele seja utilizado no `Makefile`
-
-`make`: Necessário para usar os scripts do `Makefile`
-
-`ar`: Agrupador de arquivos que vai juntar os objetos gerados pelo compilador `cc` em um único arquivo `.a`
-
-`rm`: Usado para remover os arquivos secundários e o arquivo final da biblioteca.
+- ar
+- clang
+- echo
+- make
+- rm
 
 ### Como usar:
 
