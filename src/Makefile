@@ -6,7 +6,7 @@
 #    By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 00:27:22 by rapdos-s          #+#    #+#              #
-#    Updated: 2024/11/13 04:37:28 by rapdos-s         ###   ########.fr        #
+#    Updated: 2024/11/14 12:56:55 by rapdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,11 @@ compilled_headers    = $(headers:%.h=%.h.gch)
 compilled_headers   += $(headers_bonus:%.h=%.h.gch)
 
 sources              = ft_isalpha.c
-# sources             += ft_isdigit.c
-# sources             += ft_isalnum.c
-# sources             += ft_isascii.c
-# sources             += ft_isprint.c
-# sources             += ft_strlen.c
+sources             += ft_isdigit.c
+sources             += ft_isalnum.c
+sources             += ft_isascii.c
+sources             += ft_isprint.c
+sources             += ft_strlen.c
 # sources             += ft_memset.c
 # sources             += ft_bzero.c
 # sources             += ft_memcpy.c
